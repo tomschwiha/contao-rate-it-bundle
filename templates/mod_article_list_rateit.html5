@@ -1,0 +1,48 @@
+
+<div class="<?php echo $this->class; ?> block"<?php echo $this->cssID; ?><?php if ($this->style): ?> style="<?php echo $this->style; ?>"<?php endif; ?>>
+
+  <?php if ($this->headline): ?>
+    <<?php echo $this->hl; ?>><?php echo $this->headline; ?></<?php echo $this->hl; ?>>
+  <?php endif; ?>
+
+  <ul>
+    <?php foreach ($this->articles as $article): ?>
+      <li>
+        <?php if ($article['rateit_rating_before']): ?>
+        <!-- indexer::stop -->
+        <div id="<?php echo $article['rateItID']; ?>" class="<?php echo $article['rateit_class']; ?>">
+            <?php if ($article['showBefore']) : ?>
+            <div id="<?php echo $article['descriptionId']; ?>" class="ratingText"><?php echo $article['description']; ?></div>
+            <?php endif; ?>
+            <div class="wrapper">
+                <div class="rateItRating-selected" style="display: block;"></div>
+                <div class="rateItRating-hover"></div>
+            </div>
+            <?php if ($article['showAfter']) : ?>
+            <div id="<?php echo $article['descriptionId']; ?>" class="ratingText"><?php echo $article['description']; ?></div>
+            <?php endif; ?>
+        </div>
+        <!-- indexer::continue -->
+        <?php endif; ?>
+        <a href="<?php echo $this->request; ?>#<?php echo $article['id']; ?>" title="<?php echo $article['title']; ?>"><?php echo $article['link']; ?></a>
+        <?php if ($article['rateit_rating_after']): ?>
+        <!-- indexer::stop -->
+        <div id="<?php echo $article['rateItID']; ?>" class="<?php echo $article['rateit_class']; ?>">
+            <?php if ($article['showBefore']) : ?>
+            <div id="<?php echo $article['descriptionId']; ?>" class="ratingText"><?php echo $article['description']; ?></div>
+            <?php endif; ?>
+            <div class="wrapper">
+                <div class="rateItRating-selected" style="display: block;"></div>
+                <div class="rateItRating-hover"></div>
+            </div>
+            <?php if ($article['showAfter']) : ?>
+            <div id="<?php echo $article['descriptionId']; ?>" class="ratingText"><?php echo $article['description']; ?></div>
+            <?php endif; ?>
+        </div>
+        <!-- indexer::continue -->
+        <?php endif; ?>
+      </li>
+    <?php endforeach; ?>
+  </ul>
+
+</div>

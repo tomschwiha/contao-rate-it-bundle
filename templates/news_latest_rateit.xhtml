@@ -1,0 +1,69 @@
+
+<?php if ($this->rateit_rating_before): ?>
+<!-- indexer::stop -->
+<div id="<?php echo $this->id; ?>" class="<?php echo $this->class; ?> <?php echo $this->rateit_class; ?>">
+	<?php if ($this->showBefore) : ?>
+	<div id="<?php echo $this->descriptionId; ?>" class="ratingText"><?php echo $this->description; ?></div>
+	<?php endif; ?>
+	<div class="wrapper">
+       <div class="rateItRating-selected" style="display: block;"></div>
+       <div class="rateItRating-hover"></div>
+	</div>
+	<?php if ($this->showAfter) : ?>
+	<div id="<?php echo $this->descriptionId; ?>" class="ratingText"><?php echo $this->description; ?></div>
+	<?php endif; ?>
+</div>
+<!-- indexer::continue -->
+<?php endif; ?>
+
+<div class="layout_latest block<?php echo $this->class; ?>">
+<?php if ($this->hasMetaFields): ?>
+<p class="info"><?php echo $this->date; ?> <?php echo $this->author; ?> <?php echo $this->commentCount; ?></p>
+<?php endif; ?>
+<?php if ($this->addImage): ?>
+<div class="image_container<?php echo $this->floatClass; ?>"<?php if ($this->margin || $this->float): ?> style="<?php echo trim($this->margin . $this->float); ?>"<?php endif; ?>>
+<?php if ($this->href): ?>
+<a href="<?php echo $this->href; ?>"<?php echo $this->attributes; ?> title="<?php echo $this->alt; ?>">
+<?php endif; ?>
+<img src="<?php echo $this->src; ?>"<?php echo $this->imgSize; ?> alt="<?php echo $this->alt; ?>" />
+<?php if ($this->href): ?>
+</a>
+<?php endif; ?>
+<?php if ($this->caption): ?>
+<div class="caption" style="width:<?php echo $this->arrSize[0]; ?>px"><?php echo $this->caption; ?></div>
+<?php endif; ?>
+</div>
+<?php endif; ?>
+<h2><?php echo $this->text ? $this->linkHeadline : $this->newsHeadline; ?></h2>
+<div class="teaser">
+<?php echo $this->teaser; ?> 
+</div>
+<?php if ($this->text): ?>
+<p class="more"><?php echo $this->more; ?></p>
+<?php endif; ?>
+</div>
+
+<?php if ($this->rateit_rating_after): ?>
+<!-- indexer::stop -->
+<div itemtype="http://data-vocabulary.org/Review-aggregate" itemscope="" class="rating-microdata">
+    <div id="<?php echo $this->id; ?>" class="<?php echo $this->class; ?> <?php echo $this->rateit_class; ?>">
+        <?php if ($this->showBefore) : ?>
+        <div id="<?php echo $this->descriptionId; ?>" class="ratingText"><?php echo $this->description; ?></div>
+        <?php endif; ?>
+        <div class="wrapper">
+            <div class="rateItRating-selected" style="display: block;"></div>
+            <div class="rateItRating-hover"></div>
+        </div>
+        <?php if ($this->showAfter) : ?>
+        <div id="<?php echo $this->descriptionId; ?>" class="ratingText"><?php echo $this->description; ?></div>
+        <?php endif; ?>
+    </div>
+    <span class="rating-microdata" itemprop="itemreviewed"><?php echo $this->itemreviewed; ?></span>
+    <span class="rating-microdata" itemtype="http://data-vocabulary.org/Rating" itemscope="" itemprop="rating">
+        <span itemprop="average"><?php echo $this->actRating; ?></span>
+        <span itemprop="best"><?php echo $this->maxRating; ?></span>
+    </span>
+    <span class="rating-microdata" itemprop="votes"><?php echo $this->votes; ?></span>
+</div>
+<!-- indexer::continue -->
+<?php endif; ?>

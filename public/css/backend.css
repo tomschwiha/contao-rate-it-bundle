@@ -1,0 +1,135 @@
+/**
+ * Contao Open Source CMS
+ * Copyright (C) 2005-2011 Leo Feyer
+ *
+ * Formerly known as TYPOlight Open Source CMS.
+ *
+ * This program is free software: you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation, either
+ * version 3 of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this program. If not, please visit the Free
+ * Software Foundation website at <http://www.gnu.org/licenses/>.
+ *
+ * PHP version 5
+ * @copyright  cgo IT, 2013
+ * @author     Carsten Götzinger (info@cgo-it.de)
+ * @package    rateit
+ * @license    GNU/LGPL
+ * @filesource
+ */
+
+/* General */
+.mod_rateit .nowrap { white-space:nowrap; }
+.mod_rateit .middle, .mod_rateit .middle * { vertical-align:middle; }
+.mod_rateit table.nested { width:100%; margin:0; border:0; }
+.mod_rateit table td.nopadding { vertical-align:top; padding:0px !important;}
+
+/* Rating list */
+/*.rating_container { margin:12px; }*/
+.mod_rateit table
+{
+	width:100%;
+	margin:6px 0;
+	border-top:1px solid #ddd;
+	border-bottom:1px solid #ddd;
+}
+.mod_rateit table th, .mod_rateit table td
+{
+	padding:3px 6px;
+	background-color:#f9f9f9;
+	text-align:left;
+	line-height:1;
+}
+.mod_rateit table th.selectall { 
+    background-color:#fff;
+}
+.mod_rateit table.rating-selectall { 
+    border:0px;
+}
+.mod_rateit table th { background-color:#fbf7f1; }
+.mod_rateit table tr.title th
+{
+	padding:6px;
+	background-color:#f0f0f0;
+	border-bottom:1px solid #ddd;
+}
+.mod_rateit table tr.title span.leftblock
+{
+	padding-top:2px;
+	display:block;
+	float:left;
+}
+.mod_rateit table tr.title span.leftblock a { color:#8ab858 !important; }
+.mod_rateit table tr.title span.rightblock { display:block; float:right; }
+.mod_rateit table tr.info th, .mod_rateit table tr.info td { border-top:1px solid #fff; font-size:10px; }
+.mod_rateit table .listcol1, .mod_rateit table .listcol3, .mod_rateit table .viewcol1, .mod_rateit table .viewcol3 { width:23%; }
+.mod_rateit table .listcol2, .mod_rateit table .viewcol2 { width:27%; }
+
+/* Details view */
+.mod_rateit_view tr.spacer td
+{
+	background-color:#fff;
+	border-top:1px solid #ddd;
+	border-bottom:1px solid #ddd;
+	line-height:4px;
+}
+
+/* Status colors */
+.mod_rateit table.rating td.active-0 { background-color:#ffe0e0; }
+.mod_rateit table.rating td.type-ce { background-color:#e0e0ff; }
+.mod_rateit table.rating td.type-module { background-color:#ffe0e0; }
+.mod_rateit table.rating td.type-news { background-color:#aae0e0; }
+.mod_rateit table.rating td.type-faq { background-color:#ffe0aa; }
+.mod_rateit table.rating td.type-article { background-color:#ffcce0; }
+.mod_rateit table.rating td.type-galpic { background-color:#ffe066; }
+.mod_rateit table.rating td.active-1, .mod_rateit table.rating td.type-page { background-color:#e0ffe0; }
+.mod_rateit table.rating td.
+
+/* Rating-Statistics */
+.mod_rateit table th.statistics { float:left; }
+
+/* Rating */
+.mod_rateit div.ratebarframe
+{
+	width:60px;
+	float:left;
+	background-color:#ffe0e0;
+	border:1px solid #999;
+	font-size:1px;
+	line-height:1px;
+}
+.mod_rateit div.ratebar
+{
+	width:10%;
+	height:12px;
+	background-color:#c0ffc0;
+	font-size:1px;
+}
+.mod_rateit div.ratebartext { margin-left:65px; }
+
+.mod_rateit a.header_export_excel{ 
+	padding:2px 0 3px 20px;
+	background-image:url("../images/exportEXCEL.gif");
+	background-position:left center;
+	background-repeat:no-repeat; 
+}
+
+.mod_rateit div.chart {
+	width: 100%;
+}
+
+.mod_rateit .w50 {
+	width: 48%;
+}
+
+.mod_rateit .h100 {
+	height: 100%;
+}
