@@ -92,7 +92,7 @@ class tl_content_rateit extends rateit\DcaHelper {
 							continue;
 						}
 				
-						$this->insertOrUpdateRatingItemGallery($dc, $type, $objFile->name, $objFile->id, ($dc->activeRecord->rateit_active ? '1' : ''));
+						$this->insertOrUpdateRatingItemGallery($dc, $type, $objFile->name, $objFiles->id, ($dc->activeRecord->rateit_active ? '1' : ''));
 					}
 					// Folders
 					else {
@@ -131,7 +131,11 @@ class tl_content_rateit extends rateit\DcaHelper {
 
 	public function delete(\DC_Table $dc) {
 		if ($dc->activeRecord->type == "gallery") {
-			$objFiles = \FilesModel::findMultipleByUuids(deserialize($dc->activeRecord->multiSRC));
+			if (version_compare(VERSION, '3.2', '>=')) {
+				$objFiles = \FilesModel::findMultipleByUuids(deserialize($dc->activeRecord->multiSRC));
+			} else {
+				$objFiles = \FilesModel::findMultipleByIds(deserialize($dc->activeRecord->multiSRC));
+			}
 
 			// Get all images
 			while ($objFiles->next()) {
@@ -143,13 +147,17 @@ class tl_content_rateit extends rateit\DcaHelper {
 						continue;
 					}
 					
-					$rkey = $dc->activeRecord->id.'_'.$objFile->id;
+					$rkey = $dc->activeRecord->id.'_'.$objFiles->id;
 					$this->Database->prepare("DELETE FROM tl_rateit_items WHERE rkey=? and typ=?")
 					               ->execute($rkey, 'galpic');
 				}
 				// Folders
 				else {
-					$objSubfiles = \FilesModel::findByPid($objFiles->uuid);
+					if (version_compare(VERSION, '3.2', '>=')) {
+						$objSubfiles = \FilesModel::findByPid($objFiles->uuid);
+					} else {
+						$objSubfiles = \FilesModel::findByPid($objFiles->id);
+					}
 			
 					if ($objSubfiles === null) {
 						continue;
@@ -167,7 +175,7 @@ class tl_content_rateit extends rateit\DcaHelper {
 							continue;
 						}
 			
-						$rkey = $dc->activeRecord->id.'_'.$objFile->id;
+						$rkey = $dc->activeRecord->id.'_'.$objSubfiles->id;
 						$this->Database->prepare("DELETE FROM tl_rateit_items WHERE rkey=? and typ=?")
 						               ->execute($rkey, 'galpic');
 					}

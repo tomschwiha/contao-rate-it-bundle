@@ -198,7 +198,7 @@ class RateItArticle extends RateItFrontend {
 							continue;
 						}
 				
-						$this->addRatingForImage($arrRating, $arrGallery['id'], $objFile->id, $objFile->path);
+					   $this->addRatingForImage($arrRating, $arrGallery['id'], $objFiles->id, $objFile->path);
 					}
 					// Folders
 					else {
@@ -224,7 +224,7 @@ class RateItArticle extends RateItFrontend {
 								continue;
 							}
 				
-							$this->addRatingForImage($arrRating, $arrGallery['id'], $objSubfiles->id, $objSubfiles->path);
+						   $this->addRatingForImage($arrRating, $arrGallery['id'], $objSubfiles->id, $objSubfiles->path);
 						}
 					}
 				}
