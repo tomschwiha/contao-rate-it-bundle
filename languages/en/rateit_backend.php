@@ -67,6 +67,7 @@ $GLOBALS['TL_LANG']['tl_rateit_type_options']['faq'] = 'FAQ';
 $GLOBALS['TL_LANG']['tl_rateit_type_options']['ce'] = 'Content element';
 $GLOBALS['TL_LANG']['tl_rateit_type_options']['module'] = 'Module';
 $GLOBALS['TL_LANG']['tl_rateit_type_options']['galpic'] = 'Gallery picture';
+$GLOBALS['TL_LANG']['tl_rateit_type_options']['news4ward'] = 'Blog entry';
 $GLOBALS['TL_LANG']['tl_rateit_order_options']['rating desc'] = 'Rating';
 $GLOBALS['TL_LANG']['tl_rateit_order_options']['title'] = 'Title';
 $GLOBALS['TL_LANG']['tl_rateit_order_options']['typ'] = 'Type';

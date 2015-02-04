@@ -212,7 +212,7 @@ function doRateIt() {
 			getStarPercent: function(id) {
 				/* Format = anyStringHere-<id>-<float(currentStars)>_(scale); 
 				 * Example: RateItRatings-5-3_5 //Primary key id = 5, 3/5 stars. */
-				var stars = id.match(/(\d*\|?\d*)-(page|article|ce|module|news|faq|galpic)-(\d*\.?\d+)_(\d*\.?\d+)$/);
+				var stars = id.match(/(\d*\|?\d*)-(page|article|ce|module|news|faq|galpic|news4ward)-(\d*\.?\d+)_(\d*\.?\d+)$/);
 				if (stars != null) {
 					var score = stars[3].toFloat();
 					var scale = stars[4].toFloat();
@@ -236,17 +236,17 @@ function doRateIt() {
 			},
 		
 			getRatableId: function(id) {
-				var stars = id.match(/(\d*\|?\d*)-(page|article|ce|module|news|faq|galpic)-(\d*\.?\d+)_(\d*\.?\d+)$/);
+				var stars = id.match(/(\d*\|?\d*)-(page|article|ce|module|news|faq|galpic|news4ward)-(\d*\.?\d+)_(\d*\.?\d+)$/);
 				return stars != null ? stars[1] : '';
 			},
 		
 			getRatableType: function(id) {
-				var stars = id.match(/(\d*\|?\d*)-(page|article|ce|module|news|faq|galpic)-(\d*\.?\d+)_(\d*\.?\d+)$/);
+				var stars = id.match(/(\d*\|?\d*)-(page|article|ce|module|news|faq|galpic|news4ward)-(\d*\.?\d+)_(\d*\.?\d+)$/);
 				return stars != null ? stars[2] : '';
 			},
 		
 			getRatableMaxValue: function(id) {
-				var stars = id.match(/(\d*\|?\d*)-(page|article|ce|module|news|faq|galpic)-(\d*\.?\d+)_(\d*\.?\d+)$/);
+				var stars = id.match(/(\d*\|?\d*)-(page|article|ce|module|news|faq|galpic|news4ward)-(\d*\.?\d+)_(\d*\.?\d+)$/);
 				return stars != null ? stars[4].toInt() : 0;
 			},
 			
@@ -451,7 +451,7 @@ function doRateIt() {
 		    getStarPercent: function(id) {
 				/* Format = anyStringHere-<id>-<float(currentStars)>_(scale); 
 				 * Example: RateItRatings-5-3_5 //Primary key id = 5, 3/5 stars. */
-				var stars = id.match(/(\d*\|?\d*)-(page|article|ce|module|news|faq|galpic)-(\d*\.?\d+)_(\d*\.?\d+)$/);
+				var stars = id.match(/(\d*\|?\d*)-(page|article|ce|module|news|faq|galpic|news4ward)-(\d*\.?\d+)_(\d*\.?\d+)$/);
 				if (stars != null) {
 					var score = parseFloat(stars[3]);
 					var scale = parseFloat(stars[4]);
@@ -475,17 +475,17 @@ function doRateIt() {
 			},
 	
 			getRatableId: function(id) {
-				var stars = id.match(/(\d*\|?\d*)-(page|article|ce|module|news|faq|galpic)-(\d*\.?\d+)_(\d*\.?\d+)$/);
+				var stars = id.match(/(\d*\|?\d*)-(page|article|ce|module|news|faq|galpic|news4ward)-(\d*\.?\d+)_(\d*\.?\d+)$/);
 				return stars != null ? stars[1] : '';
 			},
 			
 			getRatableType: function(id) {
-				var stars = id.match(/(\d*\|?\d*)-(page|article|ce|module|news|faq|galpic)-(\d*\.?\d+)_(\d*\.?\d+)$/);
+				var stars = id.match(/(\d*\|?\d*)-(page|article|ce|module|news|faq|galpic|news4ward)-(\d*\.?\d+)_(\d*\.?\d+)$/);
 				return stars != null ? stars[2] : '';
 			},
 			
 			getRatableMaxValue: function(id) {
-				var stars = id.match(/(\d*\|?\d*)-(page|article|ce|module|news|faq|galpic)-(\d*\.?\d+)_(\d*\.?\d+)$/);
+				var stars = id.match(/(\d*\|?\d*)-(page|article|ce|module|news|faq|galpic|news4ward)-(\d*\.?\d+)_(\d*\.?\d+)$/);
 				return stars != null ? parseInt(stars[4]) : 0;
 			},
 			

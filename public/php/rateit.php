@@ -98,7 +98,7 @@ class RateIt extends \Frontend {
 		}
 		
 		//Make sure that the ratable type is 'page' or 'ce' or 'module'
-		if (!($type === 'page' || $type === 'article' || $type === 'ce' || $type === 'module' || $type === 'news' || $type === 'faq' || $type === 'galpic')) {
+		if (!($type === 'page' || $type === 'article' || $type === 'ce' || $type === 'module' || $type === 'news' || $type === 'faq' || $type === 'galpic' || $type === 'news4ward')) {
 			header(RETURN_AJAX_HEADER);
 			echo $GLOBALS['TL_LANG']['rateit']['error']['invalid_type'];
 			exit;
