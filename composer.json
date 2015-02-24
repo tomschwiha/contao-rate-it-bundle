@@ -26,7 +26,7 @@
 		"cgo-it/xls_export":"3.0.0"
 	},
 	"replace": {
-		"cgo-it/rate-it": "self.version"
+		"cgo-it/rate-it": "<3.4.2"
 	},
     "conflict": {
 			"contao/core": "2.11.*"
