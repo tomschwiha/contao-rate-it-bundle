@@ -312,9 +312,10 @@ function doRateIt() {
 					el.data('selected', el.find('.rateItRating-selected'));
 					el.data('hover', el.find('.rateItRating-hover'));
 					
-					var backgroundImage = self.getBackgroundImage(el.data('wrapper'));
-					self.options.starwidth = backgroundImage.width;
-					self.options.starheight = backgroundImage.height / 3; // da immer drei Sterne "übereinander" gebraucht werden
+					jQuery.when(self.getBackgroundImage(el.data('wrapper'))).done(function(backgroundImageSize) {
+						self.options.starwidth = backgroundImageSize[0];
+						self.options.starheight = backgroundImageSize[1] / 3; // da immer drei Sterne "übereinander" gebraucht werden
+					});
 					if (self.options.starwidth === undefined || self.options.starwidth < 16) {
 						self.options.starwidth = 16;
 					}
@@ -498,13 +499,21 @@ function doRateIt() {
 			},
 			
 			getBackgroundImage: function(el) {
+				var dfd = jQuery.Deferred();
+				var backgroundImageSize = new Array();
 				var reg_imgFile = /url\s*\(["']?(.*)["']?\)/i;
-				var dummy = document.createElement('img');
 				var string = this.getBackgroundImagePath(el);
 				string = string.match(reg_imgFile)[1];
 				string = string.replace('\"', '');
-				dummy.src = string;
-				return dummy;
+
+				jQuery('<img/>')
+				   .attr('src', string)
+				   .load(function() {
+					   backgroundImageSize.push(this.width);
+					   backgroundImageSize.push(this.height);
+					   dfd.resolve(backgroundImageSize);
+				   });
+				return dfd.promise();
 			},
 	
 			updateText: function(el, text) {

@@ -90,7 +90,7 @@ class DcaHelper extends \Backend
 			}
 		} else {
 			$this->Database->prepare("UPDATE tl_rateit_items SET active='' WHERE rkey=? and typ=?")
-						   ->execute($dc->activeRecord->id, $typ)
+						   ->execute($dc->activeRecord->id, $type)
 						   ->updatedId;
 				
 		}

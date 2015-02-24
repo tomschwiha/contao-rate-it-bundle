@@ -133,8 +133,19 @@ class RateIt extends \Frontend {
 		            ->count();
 		
 		// Die with an error if the insert fails (duplicate IP or duplicate member id for a vote).
-		if (((!$this->allowDuplicates && $countIp == 0) || $this->allowDuplicates) ||
-          ((!$this->allowDuplicatesForMembers && (isset($countUser) ? $countUser == 0 : false)) || ($this->allowDuplicatesForMembers && isset($userId)))) {
+		if ((!$this->allowDuplicatesForMembers && (isset($countUser) ? $countUser == 0 : false)) || ($this->allowDuplicatesForMembers && isset($userId))) {
+			// Insert the data.
+			$arrSet = array('pid' => $ratableKeyId['id'],
+						'tstamp' => time(),
+						'ip_address' => $ip,
+					   'memberid' => isset($userId) ? $userId : null,
+						'rating' => $rating,
+						'createdat'=> time()
+				);
+			$this->Database->prepare('INSERT INTO tl_rateit_ratings %s')
+						   ->set($arrSet)
+						   ->execute();
+      } elseif (!isset($countUser) && ((!$this->allowDuplicates && $countIp == 0) || $this->allowDuplicates)) {
 			// Insert the data.
 			$arrSet = array('pid' => $ratableKeyId['id'],
 						'tstamp' => time(),
@@ -147,7 +158,7 @@ class RateIt extends \Frontend {
 						   ->set($arrSet)
 						   ->execute();
       } else {
-			header(RETURN_AJAX_HEADER);
+         header(RETURN_AJAX_HEADER);
 			echo $GLOBALS['TL_LANG']['rateit']['error']['duplicate_vote'];
 			exit;
       }

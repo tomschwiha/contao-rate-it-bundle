@@ -634,8 +634,8 @@ class rateitBackendModule extends \BackendModule
 		$cntSql = str_replace('%s', $where, $cntSql);
 
 		$count = $this->Database->prepare($cntSql)
-		->execute()
-		->fetchRow();
+						  ->execute()
+						  ->fetchRow();
 
 		$arrRatingItems = $this->Database->prepare($sql)
 		->execute()
