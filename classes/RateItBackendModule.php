@@ -633,13 +633,9 @@ class rateitBackendModule extends \BackendModule
 
 		$cntSql = str_replace('%s', $where, $cntSql);
 
-		$count = $this->Database->prepare($cntSql)
-						  ->execute()
-						  ->fetchRow();
+		$count = $this->Database->query($cntSql)->fetchRow();
 
-		$arrRatingItems = $this->Database->prepare($sql)
-		->execute()
-		->fetchAllAssoc();
+		$arrRatingItems = $this->Database->query($sql)->fetchAllAssoc();
 		$arrReturn = array();
 		foreach ($arrRatingItems as $rating) {
 			if ($rating['active'] != '1') $rating['active'] = '0';
