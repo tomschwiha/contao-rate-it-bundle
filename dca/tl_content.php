@@ -134,6 +134,8 @@ class tl_content_rateit extends rateit\DcaHelper {
 
 	public function delete(\DC_Table $dc) {
 		if ($dc->activeRecord->type == "gallery") {
+			$this->Database->prepare("DELETE FROM tl_rateit_ratings WHERE pid IN (SELECT `id` FROM tl_rateit_items WHERE rkey LIKE ? AND typ=?)")
+			               ->execute($dc->activeRecord->id.'|%', 'galpic');
 			$this->Database->prepare("DELETE FROM tl_rateit_items WHERE rkey LIKE ? AND typ=?")->execute($dc->activeRecord->id.'|%', 'galpic');
 			return true;
 		} else {
