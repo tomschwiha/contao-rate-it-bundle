@@ -70,11 +70,14 @@ class tl_content_rateit extends rateit\DcaHelper {
 	public function __construct() {
 		parent::__construct();
 	}
-
+	
 	public function insert(\DC_Table $dc) {
 		if ($dc->activeRecord->type == "gallery") {
 			$type = 'galpic';
-
+			
+			// Alle vorherigen Bilder erst mal auf inaktiv setzen
+			$this->Database->prepare("UPDATE tl_rateit_items SET active='' WHERE rkey LIKE ? AND typ=?")->execute($dc->activeRecord->id.'|%', $type);
+			
 			if (version_compare(VERSION, '3.2', '>=')) {
 				$objFiles = \FilesModel::findMultipleByUuids(deserialize($dc->activeRecord->multiSRC));
 			} else {
@@ -131,56 +134,7 @@ class tl_content_rateit extends rateit\DcaHelper {
 
 	public function delete(\DC_Table $dc) {
 		if ($dc->activeRecord->type == "gallery") {
-			if (version_compare(VERSION, '3.2', '>=')) {
-				$objFiles = \FilesModel::findMultipleByUuids(deserialize($dc->activeRecord->multiSRC));
-			} else {
-				$objFiles = \FilesModel::findMultipleByIds(deserialize($dc->activeRecord->multiSRC));
-			}
-
-			// Get all images
-			while ($objFiles->next()) {
-				// Single files
-				if ($objFiles->type == 'file') {
-					$objFile = new \File($objFiles->path, true);
-			
-					if (!$objFile->isGdImage) {
-						continue;
-					}
-					
-					$rkey = $dc->activeRecord->id.'_'.$objFiles->id;
-					$this->Database->prepare("DELETE FROM tl_rateit_items WHERE rkey=? and typ=?")
-					               ->execute($rkey, 'galpic');
-				}
-				// Folders
-				else {
-					if (version_compare(VERSION, '3.2', '>=')) {
-						$objSubfiles = \FilesModel::findByPid($objFiles->uuid);
-					} else {
-						$objSubfiles = \FilesModel::findByPid($objFiles->id);
-					}
-			
-					if ($objSubfiles === null) {
-						continue;
-					}
-			
-					while ($objSubfiles->next()) {
-						// Skip subfolders
-						if ($objSubfiles->type == 'folder') {
-							continue;
-						}
-			
-						$objFile = new \File($objSubfiles->path, true);
-			
-						if (!$objFile->isGdImage) {
-							continue;
-						}
-			
-						$rkey = $dc->activeRecord->id.'_'.$objSubfiles->id;
-						$this->Database->prepare("DELETE FROM tl_rateit_items WHERE rkey=? and typ=?")
-						               ->execute($rkey, 'galpic');
-					}
-				}
-			}
+			$this->Database->prepare("DELETE FROM tl_rateit_items WHERE rkey LIKE ? AND typ=?")->execute($dc->activeRecord->id.'|%', 'galpic');
 			return true;
 		} else {
 			return $this->deleteRatingKey($dc, 'ce');
