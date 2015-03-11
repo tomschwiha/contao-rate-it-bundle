@@ -38,7 +38,7 @@ $GLOBALS['TL_LANG']['tl_module']['rateit_legend'] = 'Rate It-Einstellungen';
  */
 $GLOBALS['TL_LANG']['tl_module']['rateit_title']    = array('Titel der Bewertung', 'Titel der Bewertung (wird im Backend angezeigt).');
 $GLOBALS['TL_LANG']['tl_module']['rateit_active']   = array('Aktiv', 'Aktiv bedeutet, dass die Bewertung sichtbar für den Frontend-Nutzer ist.');
-$GLOBALS['TL_LANG']['tl_module']['rateit_types']    = array('Seite', 'Artikel', 'Inhaltselement', 'Modul', 'Nachrichten', 'FAQ', 'Galeriebild');
+$GLOBALS['TL_LANG']['tl_module']['rateit_types']    = array('Typen', 'Art der Bewertung');
 $GLOBALS['TL_LANG']['tl_module']['rateit_count']    = array('Max. Anzahl', 'Max. Anzahl anzuzeigender Einträge.');
 $GLOBALS['TL_LANG']['tl_module']['rateit_toptype']  = array('Art der Liste', 'Die x bestbewerteten Einträge oder die x meistbewerteten Einträge.');
 $GLOBALS['TL_LANG']['tl_module']['rateit_template'] = array('Template', 'Hier können Sie das Template für die Bewertung des Artikels auswählen.');
@@ -50,6 +50,7 @@ $GLOBALS['TL_LANG']['tl_module']['rateit_types']['module']  = 'Modul';
 $GLOBALS['TL_LANG']['tl_module']['rateit_types']['news']    = 'Nachrichten';
 $GLOBALS['TL_LANG']['tl_module']['rateit_types']['faq']     = 'FAQ';
 $GLOBALS['TL_LANG']['tl_module']['rateit_types']['galpic']  = 'Galeriebild';
+$GLOBALS['TL_LANG']['tl_module']['rateit_types']['news4ward']  = 'Beitrag';
 
 $GLOBALS['TL_LANG']['tl_module']['rateit_toptype']['best']  = 'Beste Bewertungen';
 $GLOBALS['TL_LANG']['tl_module']['rateit_toptype']['most']  = 'Meiste Bewertungen';

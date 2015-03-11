@@ -50,6 +50,7 @@ $GLOBALS['TL_LANG']['tl_module']['rateit_types']['module']  = 'Module';
 $GLOBALS['TL_LANG']['tl_module']['rateit_types']['news']    = 'News';
 $GLOBALS['TL_LANG']['tl_module']['rateit_types']['faq']     = 'FAQ';
 $GLOBALS['TL_LANG']['tl_module']['rateit_types']['galpic']  = 'Gallery Picture';
+$GLOBALS['TL_LANG']['tl_module']['rateit_types']['news4ward']  = 'Blog entry';
 
 $GLOBALS['TL_LANG']['tl_module']['rateit_toptype']['best']  = 'Best votes';
 $GLOBALS['TL_LANG']['tl_module']['rateit_toptype']['most']  = 'Most votes';
