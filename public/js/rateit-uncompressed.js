@@ -574,7 +574,7 @@ function doRateIt() {
 			});
 			jQuery.ajax({
 				  type: "GET",
-				  url: "system/modules/rateit/public/js/helper.js",
+				  url: "system/modules/rateit/public/js/helper.min.js",
 				  dataType: "script",
 				  async: false,
 				  cache: true

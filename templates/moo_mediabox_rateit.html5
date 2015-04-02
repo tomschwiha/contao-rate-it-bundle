@@ -1,11 +1,11 @@
 <?php
 
-// Add the mediabox style sheet
+// Add the mediabox style sheet and javascript
 $GLOBALS['TL_CSS'][] = 'assets/mootools/mediabox/'. MEDIABOX .'/css/mediaboxAdvBlack21.css||static';
+$GLOBALS['TL_JAVASCRIPT'][] = 'system/modules/rateit/public/js/mootools/mediabox/mediabox-rateit.js|static';
 
 ?>
 
-<script src="system/modules/rateit/public/js/mootools/mediabox/mediabox-rateit.js"></script>
 <script>
   (function($) {
     window.addEvent('domready', function() {

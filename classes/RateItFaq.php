@@ -56,13 +56,13 @@ class RateItFaq extends RateItFrontend {
 				
 				$GLOBALS['TL_JAVASCRIPT'][] = 'system/modules/rateit/public/js/onReadyRateIt.js|static';
 				$GLOBALS['TL_JAVASCRIPT'][] = 'system/modules/rateit/public/js/rateit.js|static';
-				$GLOBALS['TL_CSS'][] = 'system/modules/rateit/public/css/rateit.css||static';
+				$GLOBALS['TL_CSS'][] = 'system/modules/rateit/public/css/rateit.min.css||static';
 				switch ($GLOBALS['TL_CONFIG']['rating_type']) {
 					case 'hearts' :
-						$GLOBALS['TL_CSS'][] = 'system/modules/rateit/public/css/heart.css||static';
+						$GLOBALS['TL_CSS'][] = 'system/modules/rateit/public/css/heart.min.css||static';
 						break;
 					default:
-						$GLOBALS['TL_CSS'][] = 'system/modules/rateit/public/css/star.css||static';
+						$GLOBALS['TL_CSS'][] = 'system/modules/rateit/public/css/star.min.css||static';
 				}
 			}
 		}
