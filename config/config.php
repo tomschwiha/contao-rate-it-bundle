@@ -33,7 +33,7 @@ use cgoIT\rateit\RateItBackend;
 /**
  * Hooks
  */
-$GLOBALS['TL_HOOKS']['outputFrontendTemplate'][] = array('rateit\\RateItPage', 'outputFrontendTemplate');
+$GLOBALS['TL_HOOKS']['generatePage'][]           = array('rateit\\RateItPage', 'generatePage');
 $GLOBALS['TL_HOOKS']['simpleAjax'][]             = array('rateit\\RateIt', 'doVote');
 $GLOBALS['TL_HOOKS']['parseArticles'][]          = array('rateit\\RateItNews', 'parseArticle');
 $GLOBALS['TL_HOOKS']['getContentElement'][]      = array('rateit\\RateItFaq', 'getContentElementRateIt');

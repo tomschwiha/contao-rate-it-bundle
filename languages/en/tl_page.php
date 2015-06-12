@@ -31,6 +31,10 @@
 
 $GLOBALS['TL_LANG']['tl_page']['rateit_legend'] = 'Rate It-Settings';
 
-$GLOBALS['TL_LANG']['tl_page']['addRating'] = array('activate rating', 'Enables the rating for this page');
+$GLOBALS['TL_LANG']['tl_page']['addRating']       = array('activate rating', 'Enables the rating for this page');
+$GLOBALS['TL_LANG']['tl_page']['rateit_position'] = array('position', 'position of the rating (before or above) the page.');
+
+$GLOBALS['TL_LANG']['tl_page']['before']          = array('above', 'Display the text above the page');
+$GLOBALS['TL_LANG']['tl_page']['after']           = array('below', 'Display the text below the page');
 
 ?>

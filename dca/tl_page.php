@@ -39,6 +39,7 @@ $GLOBALS['TL_DCA']['tl_page']['config']['ondelete_callback'][] = array('tl_page_
 /**
  * Palettes
  */
+$GLOBALS['TL_DCA']['tl_page']['palettes']['__selector__'][] = 'addRating';
 foreach ($GLOBALS['TL_DCA']['tl_page']['palettes'] as $keyPalette => $valuePalette)
 {
 	// Skip if we have a array or the palettes for subselections
@@ -53,13 +54,31 @@ foreach ($GLOBALS['TL_DCA']['tl_page']['palettes'] as $keyPalette => $valuePalet
     $GLOBALS['TL_DCA']['tl_page']['palettes'][$keyPalette] = $valuePalette;
 }
 
+/**
+ * Add subpalettes to tl_page
+ */
+$GLOBALS['TL_DCA']['tl_page']['subpalettes']['addRating']  = 'rateit_position';
+
 // Fields
 $GLOBALS['TL_DCA']['tl_page']['fields']['addRating'] = array
 (
-  'label'							=> &$GLOBALS['TL_LANG']['tl_page']['addRating'],
+  'label'						=> &$GLOBALS['TL_LANG']['tl_page']['addRating'],
   'exclude'						=> true,
   'inputType'					=> 'checkbox',
   'sql' 							=> "char(1) NOT NULL default ''",
+  'eval'           		   => array('tl_class'=>'w50 m12', 'submitOnChange'=>true)
+);
+
+$GLOBALS['TL_DCA']['tl_page']['fields']['rateit_position'] = array
+(
+  'label'                  => &$GLOBALS['TL_LANG']['tl_page']['rateit_position'],
+  'default'                => 'before',
+  'exclude'                => true,
+  'inputType'              => 'select',
+  'options'                => array('after', 'before'),
+  'reference'              => &$GLOBALS['TL_LANG']['tl_page'],
+  'sql' 						   => "varchar(6) NOT NULL default ''",
+  'eval'                   => array('mandatory'=>true, 'tl_class'=>'w50')
 );
 
 class tl_page_rateit extends rateit\DcaHelper {

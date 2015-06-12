@@ -40,10 +40,8 @@ class RateItPage extends \Frontend {
 		$this->loadDataContainer('settings');
 	}
 	
-	public function outputFrontendTemplate($strContent, $strTemplate) {
-		global $objPage;
-		
-		if ($objPage->addRating && !($strTemplate == $GLOBALS['TL_CONFIG']['rating_template'])) {
+	public function generatePage($objPage, $objLayout, $objPageType) {
+		if ($objPage->addRating) {
 			$actRecord = $this->Database->prepare("SELECT * FROM tl_rateit_items WHERE rkey=? and typ='page'")
 										->execute($objPage->id)
 										->fetchAssoc();
@@ -57,16 +55,16 @@ class RateItPage extends \Frontend {
 				$rating .= $this->includeJs();
 				$rating .= $this->includeCss();
 				
-				$posMainDiv = strpos($strContent, '<div id="main">');
-				$posInsideDiv = strpos($strContent, '<div class="inside">', $posMainDiv);
-				
-				$return = substr($strContent, 0, $posInsideDiv).'<div class="inside">';
-				$return .= $rating;
-				$return .= substr($strContent, $posInsideDiv + strlen('<div id="inside">') + 3);
-				$strContent = $return;
+				$objTemplate = $objPageType->Template;
+				if ($objTemplate) {
+					if ($objPage->rateit_position == 'after') {
+						$objTemplate->main .= $rating;
+					} else {
+						$objTemplate->main = $rating.$objTemplate->main;
+					}
+				}
 			}
 		}
-		return $strContent;
 	}
 
 	private function includeCss() {
