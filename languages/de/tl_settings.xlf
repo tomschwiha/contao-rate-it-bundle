@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file datatype="php" date="2015-06-18T07:01:15+02:00" original="tl_settings" source-language="en" target-language="de">
+    <body>
+      <trans-unit id="tl_settings.rateit">
+        <source>Rate It</source>
+        <target>Rate It</target>
+      </trans-unit>
+      <trans-unit id="tl_settings.rateit_legend">
+        <source>Rate It-Settings</source>
+        <target>Rate It-Einstellungen</target>
+      </trans-unit>
+      <trans-unit id="tl_settings.rating_type.0">
+        <source>Type</source>
+        <target>Typ</target>
+      </trans-unit>
+      <trans-unit id="tl_settings.rating_type.1">
+        <source>Type of representation. Possible options are the "hearts" or "stars".</source>
+        <target>Art der Darstellung. Mögliche Optionen sind "Herzen" oder "Sterne".</target>
+      </trans-unit>
+      <trans-unit id="tl_settings.rating_count.0">
+        <source>Number of hearts/stars</source>
+        <target>Anzahl der Herzen/Sterne</target>
+      </trans-unit>
+      <trans-unit id="tl_settings.rating_count.1">
+        <source>Number of hearts/stars which are shown.</source>
+        <target>Anzahl der Herzen/Sterne die dargestellt werden.</target>
+      </trans-unit>
+      <trans-unit id="tl_settings.rating_textposition.0">
+        <source>Text position</source>
+        <target>Textposition</target>
+      </trans-unit>
+      <trans-unit id="tl_settings.rating_textposition.1">
+        <source>Specifies whether the text should appear above or below the hearts or stars.</source>
+        <target>Gibt an, ob der Text ober- oder unterhalb der Herzen bzw. Sterne erscheinen soll.</target>
+      </trans-unit>
+      <trans-unit id="tl_settings.rating_listsize.0">
+        <source>number of entries</source>
+        <target>Anzahl Einträge</target>
+      </trans-unit>
+      <trans-unit id="tl_settings.rating_listsize.1">
+        <source>Number of entries displayed per page in the representation of ratings in the backend.</source>
+        <target>Anzahl der angezeigten Einträge pro Seite in der Darstellung der Bewertungen im Backend.</target>
+      </trans-unit>
+      <trans-unit id="tl_settings.allow_duplicate_ratings.0">
+        <source>Allow Duplicate votes</source>
+        <target>Doppelte Bewertungen zulassen</target>
+      </trans-unit>
+      <trans-unit id="tl_settings.allow_duplicate_ratings.1">
+        <source>The same ip address may vote more than once for the same rating?</source>
+        <target>Darf mit der gleichen IP-Adresse mehrfach für das gleiche Rating abstimmen?</target>
+      </trans-unit>
+      <trans-unit id="tl_settings.allow_duplicate_ratings_for_members.0">
+        <source>Allow Duplicate votes for members</source>
+        <target>Doppelte Bewertungen für Mitglieder zulassen</target>
+      </trans-unit>
+      <trans-unit id="tl_settings.allow_duplicate_ratings_for_members.1">
+        <source>A logged in frontend user may vote more than once for the same rating?</source>
+        <target>Darf ein angemeldeter Frontendbenutzer mehrfach für das gleiche Rating abstimmen?</target>
+      </trans-unit>
+      <trans-unit id="tl_settings.rating_template.0">
+        <source>Template</source>
+        <target>Template</target>
+      </trans-unit>
+      <trans-unit id="tl_settings.rating_template.1">
+        <source>Here you can select the template for the rating.</source>
+        <target>Hier können Sie das Template für die Bewertung auswählen.</target>
+      </trans-unit>
+      <trans-unit id="tl_settings.rating_description.0">
+        <source>Label</source>
+        <target>Beschriftung</target>
+      </trans-unit>
+      <trans-unit id="tl_settings.rating_description.1">
+        <source>Label for ratings. Variables are replaced&lt;br&gt;available variables: &lt;br&gt;%current% - current rating&lt;br&gt;%max% - max. possible rating&lt;br&gt;%type% - type of rating (hearts/stars)&lt;br&gt;%count% - number of votes&lt;br&gt;[singular|plural] - Text for votes&lt;br&gt;&lt;br&gt;examples:&lt;br &gt;%current%/%max% (%count% [vote|votes]) returns 3.7/5 stars (7 votes)&lt;br&gt;%count% [Like|Likes] returns 1 Like or 4 Likes</source>
+        <target>Beschriftung für die einzelnen Ratings. Variablen werden dabei entsprechend ersetzt.&lt;br&gt;verfügbare Variablen:&lt;br&gt;%current% - aktuelle Bewertung&lt;br&gt;%max% - max. mögliche Bewertung&lt;br&gt;%type% - Art der Bewertung (Herzen/Sterne)&lt;br&gt;%count% - Anzahl abgegebener Stimmen&lt;br&gt;[Singular|Plural] - Text für abgegebene Stimmen&lt;br&gt;&lt;br&gt;Beispiele:&lt;br&gt;&lt;br&gt;%current%/%max% (%count% [Stimme|Stimmen]) liefert 3,7/5 Sterne (7 Stimmen)&lt;br&gt;%count% [Like|Likes] liefert 1 Like bzw. 4 Likes</target>
+      </trans-unit>
+      <trans-unit id="tl_settings.hearts.0">
+        <source>hearts</source>
+        <target>Herzen</target>
+      </trans-unit>
+      <trans-unit id="tl_settings.hearts.1">
+        <source>Illustration with hearts</source>
+        <target>Darstellung mit Herzen</target>
+      </trans-unit>
+      <trans-unit id="tl_settings.stars.0">
+        <source>stars</source>
+        <target>Sterne</target>
+      </trans-unit>
+      <trans-unit id="tl_settings.stars.1">
+        <source>Illustration with stars</source>
+        <target>Darstellung mit Sternen</target>
+      </trans-unit>
+      <trans-unit id="tl_settings.1.0">
+        <source>1</source>
+        <target>1</target>
+      </trans-unit>
+      <trans-unit id="tl_settings.1.1">
+        <source>1</source>
+        <target>1</target>
+      </trans-unit>
+      <trans-unit id="tl_settings.5.0">
+        <source>5</source>
+        <target>5</target>
+      </trans-unit>
+      <trans-unit id="tl_settings.5.1">
+        <source>5</source>
+        <target>5</target>
+      </trans-unit>
+      <trans-unit id="tl_settings.10.0">
+        <source>10</source>
+        <target>10</target>
+      </trans-unit>
+      <trans-unit id="tl_settings.10.1">
+        <source>10</source>
+        <target>10</target>
+      </trans-unit>
+      <trans-unit id="tl_settings.before.0">
+        <source>above</source>
+        <target>oberhalb</target>
+      </trans-unit>
+      <trans-unit id="tl_settings.before.1">
+        <source>Display the text above the hearts/stars</source>
+        <target>Anzeige des Texts oberhalb der Herzen/Sterne</target>
+      </trans-unit>
+      <trans-unit id="tl_settings.after.0">
+        <source>below</source>
+        <target>unterhalb</target>
+      </trans-unit>
+      <trans-unit id="tl_settings.after.1">
+        <source>Display the text below the heart / star</source>
+        <target>Anzeige des Texts unterhalb der Herzen/Sterne</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

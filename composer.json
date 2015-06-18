@@ -35,6 +35,12 @@
 		"contao": {
 			"sources":{
 				"":"system/modules/rateit"
+			},
+			"transifex":{
+				"project": "rateit",
+				"prefix": "core-",
+				"languages_cto": "languages",
+				"languages_tx": "languages"
 			}
 		}
 	}

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file datatype="php" date="2015-06-18T07:01:15+02:00" original="tl_content" source-language="en" target-language="de">
+    <body>
+      <trans-unit id="tl_content.rateit_legend">
+        <source>Rate It-Settings</source>
+        <target>Rate It-Einstellungen</target>
+      </trans-unit>
+      <trans-unit id="tl_content.rateit_title.0">
+        <source>Rating title</source>
+        <target>Titel der Bewertung</target>
+      </trans-unit>
+      <trans-unit id="tl_content.rateit_title.1">
+        <source>Rating title (shown in backend).</source>
+        <target>Titel der Bewertung (wird im Backend angezeigt).</target>
+      </trans-unit>
+      <trans-unit id="tl_content.rateit_active.0">
+        <source>Active</source>
+        <target>Aktiv</target>
+      </trans-unit>
+      <trans-unit id="tl_content.rateit_active.1">
+        <source>Active means that the review is visible to the front-end users.</source>
+        <target>Aktiv bedeutet, dass die Bewertung sichtbar für den Frontend-Nutzer ist.</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
