@@ -70,20 +70,23 @@ class RateItPage extends \Frontend {
 	private function includeCss() {
 		$included = false;
 		$strHeadTags = '';
-		foreach ($GLOBALS['TL_CSS'] as $script) {
-			if ($script == 'system/modules/rateit/public/css/rateit.css') {
-				$included = true;
+		if (is_array($GLOBALS['TL_CSS'])) {
+			foreach ($GLOBALS['TL_CSS'] as $script) {
+				if ($this->startsWith($script, 'system/modules/rateit/public/css/rateit') === true) {
+					$included = true;
+					break;
+				}
 			}
 		}
 
 	    if (!$included) {
-	    	$strHeadTags = '<link rel="stylesheet" href="'.$this->addStaticUrlTo('system/modules/rateit/public/css/rateit.css').'">';
+	    	$strHeadTags = '<link rel="stylesheet" href="'.$this->addStaticUrlTo('system/modules/rateit/public/css/rateit.min.css').'">';
 	    	switch ($GLOBALS['TL_CONFIG']['rating_type']) {
 	    		case 'hearts' :
-	    			$strHeadTags .= '<link rel="stylesheet" href="'.$this->addStaticUrlTo('system/modules/rateit/public/css/heart.css').'">';
+	    			$strHeadTags .= '<link rel="stylesheet" href="'.$this->addStaticUrlTo('system/modules/rateit/public/css/heart.min.css').'">';
 	    			break;
 	    		default:
-	    			$strHeadTags .= '<link rel="stylesheet" href="'.$this->addStaticUrlTo('system/modules/rateit/public/css/star.css').'">';
+	    			$strHeadTags .= '<link rel="stylesheet" href="'.$this->addStaticUrlTo('system/modules/rateit/public/css/star.min.css').'">';
 	    	}
 	    }
 		return $strHeadTags;
@@ -92,9 +95,12 @@ class RateItPage extends \Frontend {
 	private function includeJs() {
 		$included = false;
 		$strHeadTags = '';
-		foreach ($GLOBALS['TL_JAVASCRIPT'] as $script) {
-			if ($script == 'system/modules/rateit/public/js/rateit.js') {
-				$included = true;
+		if (is_array($GLOBALS['TL_JAVASCRIPT'])) {
+			foreach ($GLOBALS['TL_JAVASCRIPT'] as $script) {
+				if ($this->startsWith($script, 'system/modules/rateit/public/js/rateit') === true) {
+					$included = true;
+					break;
+				}
 			}
 		}
 
@@ -103,6 +109,11 @@ class RateItPage extends \Frontend {
 	   		$strHeadTags .= '<script' . (($objPage->outputFormat == 'xhtml') ? ' type="text/javascript"' : '') . ' src="' . $this->addStaticUrlTo('system/modules/rateit/public/js/rateit.js') . '"></script>' . "\n";
 	    }
 	   	return $strHeadTags;
+	}
+	
+	function startsWith($haystack, $needle) {
+	    // search backwards starting from haystack length characters from the end
+	    return $needle === "" || strrpos($haystack, $needle, -strlen($haystack)) !== FALSE;
 	}
 }
 ?>
