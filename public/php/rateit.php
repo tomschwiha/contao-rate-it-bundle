@@ -61,114 +61,116 @@ class RateIt extends \Frontend {
 	 * @param integer percent - The rating in percentages.
 	 */
 	function doVote() {
-		$ip = $_SERVER['REMOTE_ADDR'];
-
-		$rkey = $_POST['id'];
-		$percent = $_POST['vote'];
-		$type = $_POST['type'];
-		
-		//Make sure that the ratable ID is a number and not something crazy.
-		if (strstr($rkey, '|')) {
-			$arrRkey = explode('|', $rkey);
-			foreach ($arrRkey as $key) {
-				if (!is_numeric($key)) {
+		if ($this->Input->get('do') == 'rateit') {
+			$ip = $_SERVER['REMOTE_ADDR'];
+	
+			$rkey = $this->Input->post('id');
+			$percent = $this->Input->post('vote');
+			$type = $this->Input->post('type');
+			
+			//Make sure that the ratable ID is a number and not something crazy.
+			if (strstr($rkey, '|')) {
+				$arrRkey = explode('|', $rkey);
+				foreach ($arrRkey as $key) {
+					if (!is_numeric($key)) {
+						header(RETURN_AJAX_HEADER);
+						echo $GLOBALS['TL_LANG']['rateit']['error']['invalid_rating'];
+						exit;
+					}
+					$id = $rkey;
+				}		
+			} else {
+				if (is_numeric($rkey)) {
+					$id = $rkey;
+				} else {
 					header(RETURN_AJAX_HEADER);
 					echo $GLOBALS['TL_LANG']['rateit']['error']['invalid_rating'];
 					exit;
 				}
-				$id = $rkey;
-			}		
-		} else {
-			if (is_numeric($rkey)) {
-				$id = $rkey;
+			}
+	
+			//Make sure the percent is a number and under 100.
+			if (is_numeric($percent) && $percent < 101) {
+				$rating = $percent;
 			} else {
 				header(RETURN_AJAX_HEADER);
 				echo $GLOBALS['TL_LANG']['rateit']['error']['invalid_rating'];
 				exit;
 			}
-		}
-
-		//Make sure the percent is a number and under 100.
-		if (is_numeric($percent) && $percent < 101) {
-			$rating = $percent;
-		} else {
-			header(RETURN_AJAX_HEADER);
-			echo $GLOBALS['TL_LANG']['rateit']['error']['invalid_rating'];
-			exit;
-		}
-		
-		//Make sure that the ratable type is 'page' or 'ce' or 'module'
-		if (!($type === 'page' || $type === 'article' || $type === 'ce' || $type === 'module' || $type === 'news' || $type === 'faq' || $type === 'galpic' || $type === 'news4ward')) {
-			header(RETURN_AJAX_HEADER);
-			echo $GLOBALS['TL_LANG']['rateit']['error']['invalid_type'];
-			exit;
-		}
-		
-		$strHash = sha1(session_id() . (!$GLOBALS['TL_CONFIG']['disableIpCheck'] ? \Environment::get('ip') : '') . 'FE_USER_AUTH');
-		
-		// FrontendUser auslesen
-		if (FE_USER_LOGGED_IN) {
-			$objUser = $this->Database->prepare("SELECT pid FROM tl_session WHERE hash=?")
-											  ->limit(1)
-											  ->execute($strHash);
-		
-			if ($objUser->numRows) {
-				$userId = $objUser->pid;
+			
+			//Make sure that the ratable type is 'page' or 'ce' or 'module'
+			if (!($type === 'page' || $type === 'article' || $type === 'ce' || $type === 'module' || $type === 'news' || $type === 'faq' || $type === 'galpic' || $type === 'news4ward')) {
+				header(RETURN_AJAX_HEADER);
+				echo $GLOBALS['TL_LANG']['rateit']['error']['invalid_type'];
+				exit;
 			}
-		}
-		
-		
-		$ratableKeyId = $this->Database->prepare('SELECT id FROM tl_rateit_items WHERE rkey=? and typ=?')
-							->execute($id, $type)
-							->fetchAssoc();
-
-		$canVote = false;
-		if (isset($userId)) {
-			$countUser = $this->Database->prepare('SELECT * FROM tl_rateit_ratings WHERE pid=? and memberid=?')
-							->execute($ratableKeyId['id'], $userId)
-							->count();
-		}
-		$countIp = $this->Database->prepare('SELECT * FROM tl_rateit_ratings WHERE pid=? and ip_address=?')
-		            ->execute($ratableKeyId['id'], $ip)
-		            ->count();
-		
-		// Die with an error if the insert fails (duplicate IP or duplicate member id for a vote).
-		if ((!$this->allowDuplicatesForMembers && (isset($countUser) ? $countUser == 0 : false)) || ($this->allowDuplicatesForMembers && isset($userId))) {
-			// Insert the data.
-			$arrSet = array('pid' => $ratableKeyId['id'],
-						'tstamp' => time(),
-						'ip_address' => $ip,
-					   'memberid' => isset($userId) ? $userId : null,
-						'rating' => $rating,
-						'createdat'=> time()
-				);
-			$this->Database->prepare('INSERT INTO tl_rateit_ratings %s')
-						   ->set($arrSet)
-						   ->execute();
-      } elseif (!isset($countUser) && ((!$this->allowDuplicates && $countIp == 0) || $this->allowDuplicates)) {
-			// Insert the data.
-			$arrSet = array('pid' => $ratableKeyId['id'],
-						'tstamp' => time(),
-						'ip_address' => $ip,
-					   'memberid' => isset($userId) ? $userId : null,
-						'rating' => $rating,
-						'createdat'=> time()
-				);
-			$this->Database->prepare('INSERT INTO tl_rateit_ratings %s')
-						   ->set($arrSet)
-						   ->execute();
-      } else {
-         header(RETURN_AJAX_HEADER);
-			echo $GLOBALS['TL_LANG']['rateit']['error']['duplicate_vote'];
+			
+			$strHash = sha1(session_id() . (!$GLOBALS['TL_CONFIG']['disableIpCheck'] ? \Environment::get('ip') : '') . 'FE_USER_AUTH');
+			
+			// FrontendUser auslesen
+			if (FE_USER_LOGGED_IN) {
+				$objUser = $this->Database->prepare("SELECT pid FROM tl_session WHERE hash=?")
+												  ->limit(1)
+												  ->execute($strHash);
+			
+				if ($objUser->numRows) {
+					$userId = $objUser->pid;
+				}
+			}
+			
+			
+			$ratableKeyId = $this->Database->prepare('SELECT id FROM tl_rateit_items WHERE rkey=? and typ=?')
+								->execute($id, $type)
+								->fetchAssoc();
+	
+			$canVote = false;
+			if (isset($userId)) {
+				$countUser = $this->Database->prepare('SELECT * FROM tl_rateit_ratings WHERE pid=? and memberid=?')
+								->execute($ratableKeyId['id'], $userId)
+								->count();
+			}
+			$countIp = $this->Database->prepare('SELECT * FROM tl_rateit_ratings WHERE pid=? and ip_address=?')
+			            ->execute($ratableKeyId['id'], $ip)
+			            ->count();
+			
+			// Die with an error if the insert fails (duplicate IP or duplicate member id for a vote).
+			if ((!$this->allowDuplicatesForMembers && (isset($countUser) ? $countUser == 0 : false)) || ($this->allowDuplicatesForMembers && isset($userId))) {
+				// Insert the data.
+				$arrSet = array('pid' => $ratableKeyId['id'],
+							'tstamp' => time(),
+							'ip_address' => $ip,
+						   'memberid' => isset($userId) ? $userId : null,
+							'rating' => $rating,
+							'createdat'=> time()
+					);
+				$this->Database->prepare('INSERT INTO tl_rateit_ratings %s')
+							   ->set($arrSet)
+							   ->execute();
+	      } elseif (!isset($countUser) && ((!$this->allowDuplicates && $countIp == 0) || $this->allowDuplicates)) {
+				// Insert the data.
+				$arrSet = array('pid' => $ratableKeyId['id'],
+							'tstamp' => time(),
+							'ip_address' => $ip,
+						   'memberid' => isset($userId) ? $userId : null,
+							'rating' => $rating,
+							'createdat'=> time()
+					);
+				$this->Database->prepare('INSERT INTO tl_rateit_ratings %s')
+							   ->set($arrSet)
+							   ->execute();
+	      } else {
+	         header(RETURN_AJAX_HEADER);
+				echo $GLOBALS['TL_LANG']['rateit']['error']['duplicate_vote'];
+				exit;
+	      }
+	
+			$this->import('rateit\\RateItFrontend', 'RateItFrontend');
+			$rating = $this->RateItFrontend->loadRating($id, $type);
+			
+			header(RETURN_AJAX_HEADER);
+			echo $this->RateItFrontend->getStarMessage($rating);
 			exit;
-      }
-
-		$this->import('rateit\\RateItFrontend', 'RateItFrontend');
-		$rating = $this->RateItFrontend->loadRating($id, $type);
-		
-		header(RETURN_AJAX_HEADER);
-		echo $this->RateItFrontend->getStarMessage($rating);
-		exit;
+		}
 	}
 
 }

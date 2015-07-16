@@ -271,7 +271,7 @@ function doRateIt() {
 		});
 		
 		window.addEvent('domready', function(e) {
-			RateItRating = new RateItRatings({url:'SimpleAjax.php'});
+			RateItRating = new RateItRatings({url:'SimpleAjax.php?do=rateit'});
 		});
 	} else if (window.jQuery) {
 		// the rateit plugin as an Object
@@ -579,7 +579,7 @@ function doRateIt() {
 				  async: false,
 				  cache: true
 			});
-			RateItRating = Object.create(RateItRatings).initialize({url:'SimpleAjax.php'});
+			RateItRating = Object.create(RateItRatings).initialize({url:'SimpleAjax.php?do=rateit'});
 		});
 		
 		var jEscape = function(jquery) {
