@@ -56,7 +56,7 @@ div.mbrateItRating div.rateItRating-hover, div.mbrateItRating div.rateItRating-s
 }
 
 .rateItRating .ratingText.loading, .mbrateItRating .mbratingText.loading {
-	background: url('../images/ajax-loading.gif') no-repeat;
+	background: url("../images/ajax-loading.gif") no-repeat;
 	/*text-indent: -999em;*/
 }
 
