@@ -1,0 +1,47 @@
+{
+	"name":"cgo-it/rate-it",
+	"description":"RateIt extension for the Contao Open Source CMS",
+	"keywords":["contao", "rating", "rateit", "bewertung"],
+	"type":"contao-module",
+	"license":"LGPL-3.0+",
+	"authors":[
+		{
+			"name":"cgo IT",
+			"email":"info@cgo-it.de",
+			"homepage":"https://cgo-it.de",
+			"role":"Developer"
+		}
+	],
+	"support": {
+		"email": "info@cgo-it.de",
+		"issues": "https://bitbucket.org/cgo-it/contao-rate-it/issues?status=new&status=open",
+		"forum": "https://community.contao.org/de/showthread.php?38471-Rate-It",
+		"source": "https://bitbucket.org/cgo-it/contao-rate-it/src"
+	},
+	"require":{
+		"php":">=5.3",
+		"contao/core":">=3.0",
+		"contao-community-alliance/composer-plugin": "~2.0",
+		"leounglaub/contao-simple-ajax":"3.2.x-dev",
+		"cgo-it/xls_export":"3.0.0"
+	},
+	"replace": {
+		"cgo-it/rate-it": "<3.4.3"
+	},
+    "conflict": {
+			"contao/core": "2.11.*"
+	},
+	"extra":{
+		"contao": {
+			"sources":{
+				"":"system/modules/rateit"
+			},
+			"transifex":{
+				"project": "rateit",
+				"prefix": "core-",
+				"languages_cto": "languages",
+				"languages_tx": "languages"
+			}
+		}
+	}
+}

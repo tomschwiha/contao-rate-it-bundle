@@ -1,0 +1,16 @@
+<!-- indexer::stop -->
+<div id="<?php echo $this->id; ?>" class="<?php echo $this->class; ?> <?php echo $this->rateit_class; ?> block"<?php echo $this->cssID; ?><?php if ($this->style): ?> style="<?php echo $this->style; ?>"<?php endif; ?>>
+	<?php if ($this->showBefore) : ?>
+	<div id="<?php echo $this->descriptionId; ?>" class="ratingText"><?php echo $this->description; ?></div>
+	<div class="ratingText ratingError">Microdata-Template ist bei XHTML nicht verfügbar. Bitte stellen Sie auf HTML5 um oder wechseln Sie das verwendete Template!</div>
+	<?php endif; ?>
+	<div class="wrapper">
+        <div class="rateItRating-selected" style="display: block;"></div>
+        <div class="rateItRating-hover"></div>
+	</div>
+	<?php if ($this->showAfter) : ?>
+	<div id="<?php echo $this->descriptionId; ?>" class="ratingText"><?php echo $this->description; ?></div>
+	<div class="ratingText ratingError">Microdata-Template ist bei XHTML nicht verfügbar. Bitte stellen Sie auf HTML5 um oder wechseln Sie das verwendete Template!</div>
+	<?php endif; ?>
+</div>
+<!-- indexer::continue -->

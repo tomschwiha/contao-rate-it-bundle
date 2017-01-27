@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file datatype="php" date="2015-06-18T07:01:15+02:00" original="tl_settings" source-language="en" target-language="en">
+    <body>
+      <trans-unit id="tl_settings.rateit">
+        <source>Rate It</source>
+        <target>Rate It</target>
+      </trans-unit>
+      <trans-unit id="tl_settings.rateit_legend">
+        <source>Rate It-Settings</source>
+        <target>Rate It-Settings</target>
+      </trans-unit>
+      <trans-unit id="tl_settings.rating_type.0">
+        <source>Type</source>
+        <target>Type</target>
+      </trans-unit>
+      <trans-unit id="tl_settings.rating_type.1">
+        <source>Type of representation. Possible options are the "hearts" or "stars".</source>
+        <target>Type of representation. Possible options are the "hearts" or "stars".</target>
+      </trans-unit>
+      <trans-unit id="tl_settings.rating_count.0">
+        <source>Number of hearts/stars</source>
+        <target>Number of hearts/stars</target>
+      </trans-unit>
+      <trans-unit id="tl_settings.rating_count.1">
+        <source>Number of hearts/stars which are shown.</source>
+        <target>Number of hearts/stars which are shown.</target>
+      </trans-unit>
+      <trans-unit id="tl_settings.rating_textposition.0">
+        <source>Text position</source>
+        <target>Text position</target>
+      </trans-unit>
+      <trans-unit id="tl_settings.rating_textposition.1">
+        <source>Specifies whether the text should appear above or below the hearts or stars.</source>
+        <target>Specifies whether the text should appear above or below the hearts or stars.</target>
+      </trans-unit>
+      <trans-unit id="tl_settings.rating_listsize.0">
+        <source>number of entries</source>
+        <target>number of entries</target>
+      </trans-unit>
+      <trans-unit id="tl_settings.rating_listsize.1">
+        <source>Number of entries displayed per page in the representation of ratings in the backend.</source>
+        <target>Number of entries displayed per page in the representation of ratings in the backend.</target>
+      </trans-unit>
+      <trans-unit id="tl_settings.allow_duplicate_ratings.0">
+        <source>Allow Duplicate votes</source>
+        <target>Allow Duplicate votes</target>
+      </trans-unit>
+      <trans-unit id="tl_settings.allow_duplicate_ratings.1">
+        <source>The same ip address may vote more than once for the same rating?</source>
+        <target>The same ip address may vote more than once for the same rating?</target>
+      </trans-unit>
+      <trans-unit id="tl_settings.allow_duplicate_ratings_for_members.0">
+        <source>Allow Duplicate votes for members</source>
+        <target>Allow Duplicate votes for members</target>
+      </trans-unit>
+      <trans-unit id="tl_settings.allow_duplicate_ratings_for_members.1">
+        <source>A logged in frontend user may vote more than once for the same rating?</source>
+        <target>A logged in frontend user may vote more than once for the same rating?</target>
+      </trans-unit>
+      <trans-unit id="tl_settings.rating_template.0">
+        <source>Template</source>
+        <target>Template</target>
+      </trans-unit>
+      <trans-unit id="tl_settings.rating_template.1">
+        <source>Here you can select the template for the rating.</source>
+        <target>Here you can select the template for the rating.</target>
+      </trans-unit>
+      <trans-unit id="tl_settings.rating_description.0">
+        <source>Label</source>
+        <target>Label</target>
+      </trans-unit>
+      <trans-unit id="tl_settings.rating_description.1">
+        <source>Label for ratings. Variables are replaced&lt;br&gt;available variables: &lt;br&gt;%current% - current rating&lt;br&gt;%max% - max. possible rating&lt;br&gt;%type% - type of rating (hearts/stars)&lt;br&gt;%count% - number of votes&lt;br&gt;[singular|plural] - Text for votes&lt;br&gt;&lt;br&gt;examples:&lt;br &gt;%current%/%max% (%count% [vote|votes]) returns 3.7/5 stars (7 votes)&lt;br&gt;%count% [Like|Likes] returns 1 Like or 4 Likes</source>
+        <target>Label for ratings. Variables are replaced&lt;br&gt;available variables: &lt;br&gt;%current% - current rating&lt;br&gt;%max% - max. possible rating&lt;br&gt;%type% - type of rating (hearts/stars)&lt;br&gt;%count% - number of votes&lt;br&gt;[singular|plural] - Text for votes&lt;br&gt;&lt;br&gt;examples:&lt;br &gt;%current%/%max% (%count% [vote|votes]) returns 3.7/5 stars (7 votes)&lt;br&gt;%count% [Like|Likes] returns 1 Like or 4 Likes</target>
+      </trans-unit>
+      <trans-unit id="tl_settings.hearts.0">
+        <source>hearts</source>
+        <target>hearts</target>
+      </trans-unit>
+      <trans-unit id="tl_settings.hearts.1">
+        <source>Illustration with hearts</source>
+        <target>Illustration with hearts</target>
+      </trans-unit>
+      <trans-unit id="tl_settings.stars.0">
+        <source>stars</source>
+        <target>stars</target>
+      </trans-unit>
+      <trans-unit id="tl_settings.stars.1">
+        <source>Illustration with stars</source>
+        <target>Illustration with stars</target>
+      </trans-unit>
+      <trans-unit id="tl_settings.1.0">
+        <source>1</source>
+        <target>1</target>
+      </trans-unit>
+      <trans-unit id="tl_settings.1.1">
+        <source>1</source>
+        <target>1</target>
+      </trans-unit>
+      <trans-unit id="tl_settings.5.0">
+        <source>5</source>
+        <target>5</target>
+      </trans-unit>
+      <trans-unit id="tl_settings.5.1">
+        <source>5</source>
+        <target>5</target>
+      </trans-unit>
+      <trans-unit id="tl_settings.10.0">
+        <source>10</source>
+        <target>10</target>
+      </trans-unit>
+      <trans-unit id="tl_settings.10.1">
+        <source>10</source>
+        <target>10</target>
+      </trans-unit>
+      <trans-unit id="tl_settings.before.0">
+        <source>above</source>
+        <target>above</target>
+      </trans-unit>
+      <trans-unit id="tl_settings.before.1">
+        <source>Display the text above the hearts/stars</source>
+        <target>Display the text above the hearts/stars</target>
+      </trans-unit>
+      <trans-unit id="tl_settings.after.0">
+        <source>below</source>
+        <target>below</target>
+      </trans-unit>
+      <trans-unit id="tl_settings.after.1">
+        <source>Display the text below the heart / star</source>
+        <target>Display the text below the heart / star</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
