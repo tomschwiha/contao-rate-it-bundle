@@ -1,25 +1,26 @@
 
 <?php if ($this->rateit_rating_before): ?>
 <!-- indexer::stop -->
-<div itemtype="http://data-vocabulary.org/Review-aggregate" itemscope="" class="rating-microdata">
-	<div id="<?php echo $this->id; ?>" class="<?php echo $this->class; ?> <?php echo $this->rateit_class; ?>">
-		<?php if ($this->showBefore) : ?>
-	    <div id="<?php echo $this->descriptionId; ?>" class="ratingText"><?php echo $this->description; ?></div>
-		<?php endif; ?>
-		<div class="wrapper">
+<div itemtype="http://schema.org/CreativeWork" itemscope="" class="rating-microdata">
+   <div id="<?php echo $this->ratingId; ?>" class="<?php echo $this->class; ?> <?php echo $this->rateit_class; ?>">
+      <?php if ($this->showBefore) : ?>
+       <div id="<?php echo $this->descriptionId; ?>" class="ratingText"><?php echo $this->description; ?></div>
+      <?php endif; ?>
+      <div class="wrapper">
             <div class="rateItRating-selected" style="display: block;"></div>
             <div class="rateItRating-hover"></div>
-		</div>
-		<?php if ($this->showAfter) : ?>
-	    <div id="<?php echo $this->descriptionId; ?>" class="ratingText"><?php echo $this->description; ?></div>
-		<?php endif; ?>
-	</div>
-	<span class="rating-microdata" itemprop="itemreviewed"><?php echo $this->itemreviewed; ?></span>
-	<span class="rating-microdata" itemtype="http://data-vocabulary.org/Rating" itemscope="" itemprop="rating">
-		<span itemprop="average"><?php echo $this->actRating; ?></span>
-		<span itemprop="best"><?php echo $this->maxRating; ?></span>
-	</span>
-	<span class="rating-microdata" itemprop="votes"><?php echo $this->votes; ?></span>
+      </div>
+      <?php if ($this->showAfter) : ?>
+       <div id="<?php echo $this->descriptionId; ?>" class="ratingText"><?php echo $this->description; ?></div>
+      <?php endif; ?>
+   </div>
+   <span class="rating-microdata" itemprop="name"><?php echo $this->itemreviewed; ?></span>
+   <span class="rating-microdata" itemtype="http://schema.org/AggregateRating" itemscope="" itemprop="aggregateRating">
+      <span itemprop="ratingValue"><?php echo $this->actRating; ?></span>
+      <span itemprop="worstRating">0</span>
+      <span itemprop="bestRating"><?php echo $this->maxRating; ?></span>
+      <span itemprop="ratingCount"><?php echo $this->votes; ?></span>
+   </span>
 </div>
 <!-- indexer::continue -->
 <?php endif; ?>
@@ -39,25 +40,26 @@
 
 <?php if ($this->rateit_rating_after): ?>
 <!-- indexer::stop -->
-<div itemtype="http://data-vocabulary.org/Review-aggregate" itemscope="" class="rating-microdata">
-    <div id="<?php echo $this->id; ?>" class="<?php echo $this->class; ?> <?php echo $this->rateit_class; ?>">
-        <?php if ($this->showBefore) : ?>
-        <div id="<?php echo $this->descriptionId; ?>" class="ratingText"><?php echo $this->description; ?></div>
-        <?php endif; ?>
-        <div class="wrapper">
+<div itemtype="http://schema.org/CreativeWork" itemscope="" class="rating-microdata">
+   <div id="<?php echo $this->ratingId; ?>" class="<?php echo $this->class; ?> <?php echo $this->rateit_class; ?>">
+      <?php if ($this->showBefore) : ?>
+       <div id="<?php echo $this->descriptionId; ?>" class="ratingText"><?php echo $this->description; ?></div>
+      <?php endif; ?>
+      <div class="wrapper">
             <div class="rateItRating-selected" style="display: block;"></div>
             <div class="rateItRating-hover"></div>
-        </div>
-        <?php if ($this->showAfter) : ?>
-        <div id="<?php echo $this->descriptionId; ?>" class="ratingText"><?php echo $this->description; ?></div>
-        <?php endif; ?>
-    </div>
-    <span class="rating-microdata" itemprop="itemreviewed"><?php echo $this->itemreviewed; ?></span>
-    <span class="rating-microdata" itemtype="http://data-vocabulary.org/Rating" itemscope="" itemprop="rating">
-        <span itemprop="average"><?php echo $this->actRating; ?></span>
-        <span itemprop="best"><?php echo $this->maxRating; ?></span>
-    </span>
-    <span class="rating-microdata" itemprop="votes"><?php echo $this->votes; ?></span>
+      </div>
+      <?php if ($this->showAfter) : ?>
+       <div id="<?php echo $this->descriptionId; ?>" class="ratingText"><?php echo $this->description; ?></div>
+      <?php endif; ?>
+   </div>
+   <span class="rating-microdata" itemprop="name"><?php echo $this->itemreviewed; ?></span>
+   <span class="rating-microdata" itemtype="http://schema.org/AggregateRating" itemscope="" itemprop="aggregateRating">
+      <span itemprop="ratingValue"><?php echo $this->actRating; ?></span>
+      <span itemprop="worstRating">0</span>
+      <span itemprop="bestRating"><?php echo $this->maxRating; ?></span>
+      <span itemprop="ratingCount"><?php echo $this->votes; ?></span>
+   </span>
 </div>
 <!-- indexer::continue -->
 <?php endif; ?>

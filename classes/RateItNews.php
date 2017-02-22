@@ -49,7 +49,7 @@ class RateItNews extends RateItFrontend {
 	   		
 	   		$objTemplate->descriptionId = 'rateItRating-'.$ratingId.'-description';
 	   		$objTemplate->description = $this->getStarMessage($rating);
-	   		$objTemplate->id = 'rateItRating-'.$ratingId.'-news-'.$stars.'_'.$this->intStars;
+	   		$objTemplate->ratingId = 'rateItRating-'.$ratingId.'-news-'.$stars.'_'.$this->intStars;
 			   $objTemplate->rateit_class = 'rateItRating';
 	   		$objTemplate->itemreviewed = $rating['title'];
 	   		$objTemplate->actRating = $this->percentToStars($rating['rating']);
