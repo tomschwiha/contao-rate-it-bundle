@@ -271,7 +271,7 @@ function doRateIt() {
 		});
 		
 		window.addEvent('domready', function(e) {
-			RateItRating = new RateItRatings({url:'SimpleAjax.php?do=rateit'});
+			RateItRating = new RateItRatings({url:'system/modules/rateit/public/php/rateit-ajax.php?do=rateit'});
 		});
 	} else if (window.jQuery) {
 		// the rateit plugin as an Object
@@ -579,7 +579,7 @@ function doRateIt() {
 				  async: false,
 				  cache: true
 			});
-			RateItRating = Object.create(RateItRatings).initialize({url:'SimpleAjax.php?do=rateit'});
+			RateItRating = Object.create(RateItRatings).initialize({url:'system/modules/rateit/public/php/rateit-ajax.php?do=rateit'});
 		});
 		
 		var jEscape = function(jquery) {
