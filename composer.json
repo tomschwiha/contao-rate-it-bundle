@@ -14,18 +14,19 @@
 	],
 	"support": {
 		"email": "info@cgo-it.de",
-		"issues": "https://git.cgo-it.de/contao/rate-it/issues",
+		"issues": "https://bitbucket.org/cgo-it/contao-rate-it/issues?status=new&status=open",
 		"forum": "https://community.contao.org/de/showthread.php?38471-Rate-It",
-		"source": "https://git.cgo-it.de/contao/rate-it/tree/master"
+		"source": "https://bitbucket.org/cgo-it/contao-rate-it/src"
 	},
 	"require":{
 		"php":">=5.3",
 		"contao/core":">=3.0",
 		"contao-community-alliance/composer-plugin": "~2.0",
+		"leounglaub/contao-simple-ajax":"3.2.x-dev",
 		"cgo-it/xls_export":"3.0.0"
 	},
 	"replace": {
-		"cgo-it/rate-it": "<3.5.4"
+		"cgo-it/rate-it": "<3.4.3"
 	},
     "conflict": {
 			"contao/core": "2.11.*"

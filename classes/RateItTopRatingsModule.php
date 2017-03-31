@@ -35,7 +35,7 @@ namespace cgoIT\rateit;
  */
 class RateItTopRatingsModule extends RateItFrontend
 {
-	//protected $intStars = 5;
+	private static $arrUrlCache = array();
 	
 	/**
 	 * Initialize the controller
@@ -123,6 +123,8 @@ class RateItTopRatingsModule extends RateItFrontend
 			
 			$return->rateit_class = 'rateItRating';
 			
+			$return->url = $this->getUrl($result);
+			
 			// Beschriftung ermitteln
 			$rating = array();
 			$rating['totalRatings'] = $result['most'];
@@ -136,6 +138,103 @@ class RateItTopRatingsModule extends RateItFrontend
 		}
 		
 		$this->Template->arrRatings = $objReturn;
+	}
+	
+	private function getUrl($rating) {
+		if ($rating['typ'] === 'page') {
+			return \PageModel::findById($rating['rkey'])->getAbsoluteUrl();
+		}
+		if ($rating['typ'] === 'article') {
+			$objArticle = \ArticleModel::findPublishedById($rating['rkey']);
+			if (!is_null($objArticle)) {
+				return \PageModel::findById($objArticle->pid)->getAbsoluteUrl().'#'.$objArticle->alias;
+			}
+		}
+		if ($rating['typ'] === 'news') {
+			$objNews = \NewsModel::findById($rating['rkey']);
+			$objArticle = \NewsModel::findPublishedByPid($objNews->pid);
+			
+			// Internal link
+			if ($objArticle->source != 'external') {
+				return $this->generateNewsUrl($objNews);
+			}
+			
+			// Encode e-mail addresses
+			if (substr($objArticle->url, 0, 7) == 'mailto:') {
+				$strArticleUrl = \StringUtil::encodeEmail($objArticle->url);
+			}
+			
+			// Ampersand URIs
+			else {
+				$strArticleUrl = ampersand($objArticle->url);
+			}
+			
+			/** @var \PageModel $objPage */
+			global $objPage;
+			
+			// External link
+			return $strArticleUrl;
+		}
+		return false;
+	}
+
+	private function generateNewsUrl($objItem) {
+		$strCacheKey = 'id_' . $objItem->id;
+		
+		// Load the URL from cache
+		if (isset(self::$arrUrlCache[$strCacheKey])) {
+			return self::$arrUrlCache[$strCacheKey];
+		}
+		
+		// Initialize the cache
+		self::$arrUrlCache[$strCacheKey] = null;
+		
+		switch ($objItem->source) {
+			// Link to an external page
+			case 'external' :
+				if (substr($objItem->url, 0, 7) == 'mailto:') {
+					self::$arrUrlCache[$strCacheKey] = \StringUtil::encodeEmail($objItem->url);
+				} else {
+					self::$arrUrlCache[$strCacheKey] = ampersand($objItem->url);
+				}
+				break;
+			
+			// Link to an internal page
+			case 'internal' :
+				if (($objTarget = $objItem->getRelated('jumpTo')) !== null) {
+					/** @var \PageModel $objTarget */
+					self::$arrUrlCache[$strCacheKey] = ampersand($objTarget->getFrontendUrl());
+				}
+				break;
+			
+			// Link to an article
+			case 'article' :
+				if (($objArticle = \ArticleModel::findByPk($objItem->articleId, array(
+						'eager' => true
+				))) !== null && ($objPid = $objArticle->getRelated('pid')) !== null) {
+					/** @var \PageModel $objPid */
+					self::$arrUrlCache[$strCacheKey] = ampersand($objPid->getFrontendUrl('/articles/' . ((! \Config::get('disableAlias') && $objArticle->alias != '') ? $objArticle->alias : $objArticle->id)));
+				}
+				break;
+		}
+		
+		// Link to the default page
+		if (self::$arrUrlCache[$strCacheKey] === null) {
+			$objPage = \PageModel::findWithDetails($objItem->getRelated('pid')->jumpTo);
+			
+			if ($objPage === null) {
+				self::$arrUrlCache[$strCacheKey] = ampersand(\Environment::get('request'), true);
+			} else {
+				self::$arrUrlCache[$strCacheKey] = ampersand($objPage->getFrontendUrl(((\Config::get('useAutoItem') && ! \Config::get('disableAlias')) ? '/' : '/items/') . ((! \Config::get('disableAlias') && $objItem->alias != '') ? $objItem->alias : $objItem->id)));
+			}
+			
+			// Add the current archive parameter (news archive)
+			if ($blnAddArchive && \Input::get('month') != '') {
+				self::$arrUrlCache[$strCacheKey] .= (\Config::get('disableAlias') ? '&amp;' : '?') . 'month=' . \Input::get('month');
+			}
+		}
+		
+		return self::$arrUrlCache[$strCacheKey];
 	}
 }
 

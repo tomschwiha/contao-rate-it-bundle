@@ -15,6 +15,15 @@
    height: 16px;
 }
 
+.ce_rateit_top_ratings .rateItContainer {
+	display: inline-block;
+	width: 100%;
+}
+
+.ce_rateit_top_ratings .rateItTitle {
+	float: left;
+}
+
 .rateItRating[rel="not-rateable"] { 
    float: right;
 }
