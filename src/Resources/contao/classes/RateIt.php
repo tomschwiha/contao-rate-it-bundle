@@ -31,8 +31,8 @@
 namespace cgoIT\rateit;
 
 use cgoIT\rateit\RateItFrontend;
-
-define(RETURN_AJAX_HEADER, 'Content-Type: text/html');
+use SimpleAjax\Event\SimpleAjax;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 class RateIt extends \Frontend {
 
@@ -65,7 +65,7 @@ class RateIt extends \Frontend {
 	 * @param integer id      - The id of key to register a rating for.
 	 * @param integer percent - The rating in percentages.
 	 */
-	function doVote() {
+	public function doVote(SimpleAjax $event) {
 		if ($this->Input->get('do') == 'rateit') {
 			$ip = $_SERVER['REMOTE_ADDR'];
 
@@ -78,9 +78,10 @@ class RateIt extends \Frontend {
 				$arrRkey = explode('|', $rkey);
 				foreach ($arrRkey as $key) {
 					if (!is_numeric($key)) {
-						header(RETURN_AJAX_HEADER);
-						echo $GLOBALS['TL_LANG']['rateit']['error']['invalid_rating'];
-						exit;
+						$return = [$GLOBALS['TL_LANG']['rateit']['error']['invalid_rating']];
+						$response = new JsonResponse($return);
+						$event->setResponse($response);
+						return;
 					}
 					$id = $rkey;
 				}
@@ -88,9 +89,10 @@ class RateIt extends \Frontend {
 				if (is_numeric($rkey)) {
 					$id = $rkey;
 				} else {
-					header(RETURN_AJAX_HEADER);
-					echo $GLOBALS['TL_LANG']['rateit']['error']['invalid_rating'];
-					exit;
+					$return = [$GLOBALS['TL_LANG']['rateit']['error']['invalid_rating']];
+					$response = new JsonResponse($return);
+					$event->setResponse($response);
+					return;
 				}
 			}
 
@@ -98,16 +100,18 @@ class RateIt extends \Frontend {
 			if (is_numeric($percent) && $percent < 101) {
 				$rating = $percent;
 			} else {
-				header(RETURN_AJAX_HEADER);
-				echo $GLOBALS['TL_LANG']['rateit']['error']['invalid_rating'];
-				exit;
+				$return = [$GLOBALS['TL_LANG']['rateit']['error']['invalid_rating']];
+				$response = new JsonResponse($return);
+				$event->setResponse($response);
+				return;
 			}
 
 			//Make sure that the ratable type is 'page' or 'ce' or 'module'
 			if (!($type === 'page' || $type === 'article' || $type === 'ce' || $type === 'module' || $type === 'news' || $type === 'faq' || $type === 'galpic' || $type === 'news4ward')) {
-				header(RETURN_AJAX_HEADER);
-				echo $GLOBALS['TL_LANG']['rateit']['error']['invalid_type'];
-				exit;
+				$return = [$GLOBALS['TL_LANG']['rateit']['error']['invalid_type']];
+				$response = new JsonResponse($return);
+				$event->setResponse($response);
+				return;
 			}
 
 			$strHash = sha1(session_id() . (!$GLOBALS['TL_CONFIG']['disableIpCheck'] ? \Environment::get('ip') : '') . 'FE_USER_AUTH');
@@ -156,7 +160,7 @@ class RateIt extends \Frontend {
 				$arrSet = array('pid' => $ratableKeyId['id'],
 							'tstamp' => time(),
 							'ip_address' => $ip,
-						   'memberid' => isset($userId) ? $userId : null,
+					    'memberid' => isset($userId) ? $userId : null,
 							'rating' => $rating,
 							'createdat'=> time()
 					);
@@ -171,9 +175,9 @@ class RateIt extends \Frontend {
 
 			$rating = $this->rateItFrontend->loadRating($id, $type);
 
-			header(RETURN_AJAX_HEADER);
-			echo $this->rateItFrontend->getStarMessage($rating);
-			exit;
+			$return = [$this->rateItFrontend->getStarMessage($rating)];
+			$response = new JsonResponse($return);
+			$event->setResponse($response);
 		}
 	}
 
