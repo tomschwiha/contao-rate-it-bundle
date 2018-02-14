@@ -28,7 +28,7 @@
  * @filesource
  */
 
- use cgoIT/rateit/DcaHelper;
+ use cgoIT\rateit\DcaHelper;
 
 $GLOBALS['TL_DCA']['tl_content']['config']['onsubmit_callback'][] = array('tl_content_rateit','insert');
 $GLOBALS['TL_DCA']['tl_content']['config']['ondelete_callback'][] = array('tl_content_rateit','delete');

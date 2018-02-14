@@ -29,7 +29,7 @@
 */
 
 
-use cgoIT/rateit/DcaHelper;
+use cgoIT\rateit\DcaHelper;
 
 /**
  * Extend tl_page
