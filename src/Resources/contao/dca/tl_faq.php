@@ -27,8 +27,9 @@
  * @license    GNU/LGPL
  * @filesource
 */
- 
- 
+
+use cgoIT/rateit/DcaHelper;
+
 /**
  * Extend tl_article
  */
@@ -69,14 +70,14 @@ $GLOBALS['TL_DCA']['tl_faq']['fields']['rateit_position'] = array
   'eval'                   => array('mandatory'=>true, 'tl_class'=>'w50')
 );
 
-class tl_faq_rating extends rateit\DcaHelper {
+class tl_faq_rating extends DcaHelper {
 	/**
 	 * Constructor
 	 */
 	public function __construct() {
 		parent::__construct();
 	}
-	
+
 	public function insert(\DC_Table $dc) {
       return $this->insertOrUpdateRatingKey($dc, 'faq', $dc->activeRecord->question);
 	}

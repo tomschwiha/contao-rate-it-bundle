@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 /**
  * Contao Open Source CMS
@@ -27,6 +27,8 @@
  * @license    GNU/LGPL
  * @filesource
  */
+
+ use cgoIT/rateit/DcaHelper;
 
 $GLOBALS['TL_DCA']['tl_module']['config']['onsubmit_callback'][] = array('tl_module_rateit','insert');
 $GLOBALS['TL_DCA']['tl_module']['config']['ondelete_callback'][] = array('tl_module_rateit','delete');
@@ -107,7 +109,7 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['rateit_template'] = array
 /**
  * Class tl_module_rateit
  */
-class tl_module_rateit extends rateit\DcaHelper {
+class tl_module_rateit extends DcaHelper {
 
 	/**
 	 * Constructor
@@ -115,7 +117,7 @@ class tl_module_rateit extends rateit\DcaHelper {
 	public function __construct() {
 		parent::__construct();
 	}
-	
+
 	public function insert(\DC_Table $dc) {
       return $this->insertOrUpdateRatingKey($dc, 'module', $dc->activeRecord->rateit_title);
 	}

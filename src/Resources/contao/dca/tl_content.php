@@ -28,6 +28,8 @@
  * @filesource
  */
 
+ use cgoIT/rateit/DcaHelper;
+
 $GLOBALS['TL_DCA']['tl_content']['config']['onsubmit_callback'][] = array('tl_content_rateit','insert');
 $GLOBALS['TL_DCA']['tl_content']['config']['ondelete_callback'][] = array('tl_content_rateit','delete');
 
@@ -62,7 +64,7 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['rateit_active'] = array
 /**
  * Class tl_content_rateit
 */
-class tl_content_rateit extends rateit\DcaHelper {
+class tl_content_rateit extends DcaHelper {
 
 	/**
 	 * Constructor
@@ -70,31 +72,31 @@ class tl_content_rateit extends rateit\DcaHelper {
 	public function __construct() {
 		parent::__construct();
 	}
-	
+
 	public function insert(\DC_Table $dc) {
 		if ($dc->activeRecord->type == "gallery") {
 			$type = 'galpic';
-			
+
 			// Alle vorherigen Bilder erst mal auf inaktiv setzen
 			$this->Database->prepare("UPDATE tl_rateit_items SET active='' WHERE rkey LIKE ? AND typ=?")->execute($dc->activeRecord->id.'|%', $type);
-			
+
 			if (version_compare(VERSION, '3.2', '>=')) {
 				$objFiles = \FilesModel::findMultipleByUuids(deserialize($dc->activeRecord->multiSRC));
 			} else {
 				$objFiles = \FilesModel::findMultipleByIds(deserialize($dc->activeRecord->multiSRC));
 			}
-			
+
 			if ($objFiles !== null) {
 				// Get all images
 				while ($objFiles->next()) {
 					// Single files
 					if ($objFiles->type == 'file') {
 						$objFile = new \File($objFiles->path, true);
-				
+
 						if (!$objFile->isGdImage) {
 							continue;
 						}
-				
+
 						$this->insertOrUpdateRatingItemGallery($dc, $type, $objFile->name, $objFiles->id, ($dc->activeRecord->rateit_active ? '1' : ''));
 					}
 					// Folders
@@ -104,23 +106,23 @@ class tl_content_rateit extends rateit\DcaHelper {
 						} else {
 							$objSubfiles = \FilesModel::findByPid($objFiles->id);
 						}
-				
+
 						if ($objSubfiles === null) {
 							continue;
 						}
-				
+
 						while ($objSubfiles->next()) {
 							// Skip subfolders
 							if ($objSubfiles->type == 'folder') {
 								continue;
 							}
-				
+
 							$objFile = new \File($objSubfiles->path, true);
-				
+
 							if (!$objFile->isGdImage) {
 								continue;
 							}
-				
+
 							$this->insertOrUpdateRatingItemGallery($dc, $type, $objSubfiles->name, $objSubfiles->id, ($dc->activeRecord->rateit_active ? '1' : ''));
 						}
 					}
@@ -142,7 +144,7 @@ class tl_content_rateit extends rateit\DcaHelper {
 			return $this->deleteRatingKey($dc, 'ce');
 		}
 	}
-	
+
 	private function insertOrUpdateRatingItemGallery(\DC_Table &$dc, $type, $strName, $imgId, $active) {
 		$rkey = $dc->activeRecord->id.'|'.$imgId;
 		$headline = deserialize($dc->activeRecord->headline);

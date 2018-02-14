@@ -27,8 +27,9 @@
  * @license    GNU/LGPL
  * @filesource
 */
- 
- 
+
+ use cgoIT/rateit/DcaHelper;
+
 /**
  * Extend tl_article
  */
@@ -80,14 +81,14 @@ $GLOBALS['TL_DCA']['tl_article']['fields']['rateit_template'] = array
   'eval'                    => array('mandatory'=>true, 'tl_class'=>'w50')
 );
 
-class tl_article_rating extends rateit\DcaHelper {
+class tl_article_rating extends DcaHelper {
 	/**
 	 * Constructor
 	 */
 	public function __construct() {
 		parent::__construct();
 	}
-	
+
    /**
 	 * Return all navigation templates as array
 	 * @param DataContainer

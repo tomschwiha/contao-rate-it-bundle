@@ -27,8 +27,10 @@
  * @license    GNU/LGPL
  * @filesource
 */
- 
- 
+
+
+use cgoIT/rateit/DcaHelper;
+
 /**
  * Extend tl_page
  */
@@ -81,14 +83,14 @@ $GLOBALS['TL_DCA']['tl_page']['fields']['rateit_position'] = array
   'eval'                   => array('mandatory'=>true, 'tl_class'=>'w50')
 );
 
-class tl_page_rateit extends rateit\DcaHelper {
+class tl_page_rateit extends DcaHelper {
 	/**
 	 * Constructor
 	 */
 	public function __construct() {
 		parent::__construct();
 	}
-	
+
 	public function insert(\DC_Table $dc) {
       return $this->insertOrUpdateRatingKey($dc, 'page', $dc->activeRecord->title);
 	}
