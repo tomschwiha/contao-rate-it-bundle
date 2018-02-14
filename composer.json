@@ -1,8 +1,9 @@
 {
-	"name":"cgo-it/rate-it",
-	"description":"RateIt extension for the Contao Open Source CMS",
-	"keywords":["contao", "rating", "rateit", "bewertung"],
-	"type":"contao-module",
+	"name":"cgo-it/contao-rate-it-bundle",
+	"description":"RateIt extension for the Contao Open Source CMS as contao 4 bundle",
+	"keywords":["contao", "rating", "rateit", "bewertung", "bundle"],
+	"type":"contao-bundle",
+	"homepage":"https://cgo-it.de",
 	"license":"LGPL-3.0+",
 	"authors":[
 		{
@@ -13,34 +14,38 @@
 		}
 	],
 	"support": {
-		"email": "info@cgo-it.de",
 		"issues": "https://git.cgo-it.de/contao/rate-it/issues",
 		"forum": "https://community.contao.org/de/showthread.php?38471-Rate-It",
 		"source": "https://git.cgo-it.de/contao/rate-it.git"
 	},
 	"require":{
-		"php":">=5.6",
-		"contao/core":">=3.0||<5",
-		"contao-community-alliance/composer-plugin": "~2.0",
-		"cgo-it/xls_export":"^3.1"
+		"php":">=7.0",
+		"contao/core-bundle": "^4.4",
+		"cgo-it/xls-export-bundle": "^4.0",
+		"richardhj/contao-simple-ajax": "^1.3"
 	},
-	"replace": {
-		"cgo-it/rate-it": "<3.5.4"
+	"require-dev": {
+        "contao/manager-plugin": "^2.0"
 	},
-    "conflict": {
-			"contao/core": "<3.0"
+	"conflict": {
+		"contao/core": "*",
+		"contao/manager-plugin": "<2.0 || >=3.0",
 	},
-	"extra":{
-		"contao": {
-			"sources":{
-				"":"system/modules/rateit"
-			},
-			"transifex":{
-				"project": "rateit",
-				"prefix": "core-",
-				"languages_cto": "languages",
-				"languages_tx": "languages"
-			}
-		}
+	"autoload": {
+		"psr-4": {
+			"cgoIT\\rateit\\": "src/"
+		},
+		"classmap": [
+			"src/Resources/contao/"
+		],
+		"exclude-from-classmap": [
+			"src/Resources/contao/config/",
+			"src/Resources/contao/dca/",
+			"src/Resources/contao/languages/",
+			"src/Resources/contao/templates/"
+		]
+ 	},
+	"extra": {
+		"contao-manager-plugin": "cgoIT\\rateit\\ContaoManagerPlugin"
 	}
 }
