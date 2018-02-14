@@ -21,7 +21,7 @@
 	"require":{
 		"php":">=7.0",
 		"contao/core-bundle": "^4.4",
-		"cgo-it/xls-export-bundle": "^4.0",
+		"cgo-it/contao-xls_export-bundle": "^4.0",
 		"richardhj/contao-simple-ajax": "^1.3"
 	},
 	"require-dev": {
@@ -46,6 +46,9 @@
 		]
  	},
 	"extra": {
+		"contao": {
+			"runonce": ["src/Resources/contao/runonce/create-initial-data.php"]
+		},
 		"contao-manager-plugin": "cgoIT\\rateit\\ContaoManagerPlugin"
 	}
 }
