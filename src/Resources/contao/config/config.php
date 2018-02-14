@@ -44,9 +44,9 @@ $GLOBALS['TL_HOOKS']['parseTemplate'][]          = array('cgoIT\\rateit\\RateItA
 array_insert($GLOBALS['BE_MOD']['content'], count($GLOBALS['BE_MOD']['content']),
 	array('rateit' => array (
 		'callback'   => 'cgoIT\\rateit\\RateItBackendModule',
-    'icon'       => rateit\RateItBackend::image('icon'),
-		'stylesheet' => rateit\RateItBackend::css('backend'),
-		'javascript' => rateit\RateItBackend::js('RateItBackend')
+    'icon'       => RateItBackend::image('icon'),
+		'stylesheet' => RateItBackend::css('backend'),
+		'javascript' => RateItBackend::js('RateItBackend')
 	)
 ));
 
