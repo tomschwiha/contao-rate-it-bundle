@@ -28,6 +28,8 @@
  * @filesource
  */
 
+use cgoIT\rateit\DcaHelper;
+
 /**
  * palettes
  */
@@ -112,4 +114,8 @@ $GLOBALS['TL_DCA']['tl_settings']['fields']['rating_description'] = array
 		'inputType'               => 'text',
 		'eval'                    => array('mandatory'=>true, 'allowHtml'=>true, 'tl_class'=>'w50')
 );
+
+class tl_settings_rateit extends DcaHelper
+{
+}
 ?>
