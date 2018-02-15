@@ -20,7 +20,6 @@
 
 <?php $this->insert('news_full', $this->arrData); ?>
 
-</div>
 <?php if ($this->rateit_rating_after): ?>
 	<!-- indexer::stop -->
 	<?php $this->block('rating'); ?>
