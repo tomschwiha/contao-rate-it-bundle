@@ -70,39 +70,12 @@ $GLOBALS['TL_DCA']['tl_article']['fields']['rateit_position'] = array
   'eval'                   => array('mandatory'=>true, 'tl_class'=>'w50')
 );
 
-$GLOBALS['TL_DCA']['tl_article']['fields']['rateit_template'] = array
-(
-  'label'                   => &$GLOBALS['TL_LANG']['tl_article']['rateit_template'],
-  'default'                 => 'rateit_default',
-  'exclude'                 => true,
-  'inputType'               => 'select',
-  'options_callback'        => array('tl_article_rating', 'getRateItArticleTemplates'),
-  'sql' 						    => "varchar(255) NOT NULL default ''",
-  'eval'                    => array('mandatory'=>false, 'tl_class'=>'w50')
-);
-
 class tl_article_rating extends DcaHelper {
 	/**
 	 * Constructor
 	 */
 	public function __construct() {
 		parent::__construct();
-	}
-
-   /**
-	 * Return all navigation templates as array
-	 * @param DataContainer
-	 * @return array
-	 */
-	public function getRateItArticleTemplates(\DataContainer $dc) {
-		$intPid = $dc->activeRecord->pid;
-
-		if ($this->Input->get('act') == 'overrideAll')
-		{
-			$intPid = $this->Input->get('id');
-		}
-
-		return $this->getTemplateGroup('article_rateit_', $intPid);
 	}
 
 	public function insert(\DC_Table $dc) {

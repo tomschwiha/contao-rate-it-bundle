@@ -57,12 +57,6 @@ class RateItArticle extends RateItFrontend {
 		->fetchAssoc();
 
 		if ($arrArticle['addRating']) {
-			/*if ($objTemplate->multiMode && $objTemplate->showTeaser) {
-				$objTemplate->setName('mod_'.$arrArticle['rateit_template'].'_teaser');
-			} else {
-				$objTemplate->setName($arrArticle['rateit_template']);
-			}*/
-
 			$ratingId = $arrArticle['id'];
 			$rating = $this->loadRating($ratingId, 'article');
 			$stars = !$rating ? 0 : $this->percentToStars($rating['rating']);
