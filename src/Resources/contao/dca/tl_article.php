@@ -78,7 +78,7 @@ $GLOBALS['TL_DCA']['tl_article']['fields']['rateit_template'] = array
   'inputType'               => 'select',
   'options_callback'        => array('tl_article_rating', 'getRateItArticleTemplates'),
   'sql' 						    => "varchar(255) NOT NULL default ''",
-  'eval'                    => array('mandatory'=>true, 'tl_class'=>'w50')
+  'eval'                    => array('mandatory'=>false, 'tl_class'=>'w50')
 );
 
 class tl_article_rating extends DcaHelper {
