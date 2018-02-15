@@ -1,65 +1,17 @@
+<?php $this->extend('news_short_rateit'); ?>
 
-<?php if ($this->rateit_rating_before): ?>
-<!-- indexer::stop -->
-<div itemtype="http://schema.org/CreativeWork" itemscope class="rating-microdata">
-   <div id="<?php echo $this->ratingId; ?>" class="<?php echo $this->class; ?> <?php echo $this->rateit_class; ?>">
-      <?php if ($this->showBefore) : ?>
-       <div id="<?php echo $this->descriptionId; ?>" class="ratingText"><?php echo $this->description; ?></div>
-      <?php endif; ?>
-      <div class="wrapper">
-            <div class="rateItRating-selected" style="display: block;"></div>
-            <div class="rateItRating-hover"></div>
-      </div>
-      <?php if ($this->showAfter) : ?>
-       <div id="<?php echo $this->descriptionId; ?>" class="ratingText"><?php echo $this->description; ?></div>
-      <?php endif; ?>
-   </div>
-   <span class="rating-microdata" itemprop="name"><?php echo $this->itemreviewed; ?></span>
-   <span class="rating-microdata" itemtype="http://schema.org/AggregateRating" itemscope itemprop="aggregateRating">
-      <span itemprop="ratingValue"><?php echo $this->actRating; ?></span>
-      <span itemprop="worstRating">0</span>
-      <span itemprop="bestRating"><?php echo $this->maxRating; ?></span>
-      <span itemprop="ratingCount"><?php echo $this->votes; ?></span>
-   </span>
-</div>
-<!-- indexer::continue -->
-<?php endif; ?>
+<?php $this->block('rating'); ?>
+  <!-- indexer::stop -->
+  <div itemtype="http://schema.org/CreativeWork" itemscope class="rating-microdata">
+    <?php $this->parent(); ?>
+    <span class="rating-microdata" itemprop="name"><?php echo $this->itemreviewed; ?></span>
+    <span class="rating-microdata" itemtype="http://schema.org/AggregateRating" itemscope itemprop="aggregateRating">
+       <span itemprop="ratingValue"><?php echo $this->actRating; ?></span>
+       <span itemprop="worstRating">0</span>
+       <span itemprop="bestRating"><?php echo $this->maxRating; ?></span>
+       <span itemprop="ratingCount"><?php echo $this->votes; ?></span>
+    </span>
+  </div>
+  <!-- indexer::continue -->
 
-<div class="layout_short block<?php echo $this->class; ?>">
-<?php if ($this->hasMetaFields): ?>
-<p class="info"><time datetime="<?php echo $this->datetime; ?>"><?php echo $this->date; ?></time> <?php echo $this->author; ?> <?php echo $this->commentCount; ?></p>
-<?php endif; ?>
-<h2><?php echo $this->text ? $this->linkHeadline : $this->newsHeadline; ?></h2>
-<div class="teaser">
-<?php echo $this->teaser; ?> 
-</div>
-<?php if ($this->text): ?>
-<p class="more"><?php echo $this->more; ?></p>
-<?php endif; ?>
-</div>
-
-<?php if ($this->rateit_rating_after): ?>
-<!-- indexer::stop -->
-<div itemtype="http://schema.org/CreativeWork" itemscope class="rating-microdata">
-   <div id="<?php echo $this->ratingId; ?>" class="<?php echo $this->class; ?> <?php echo $this->rateit_class; ?>">
-      <?php if ($this->showBefore) : ?>
-       <div id="<?php echo $this->descriptionId; ?>" class="ratingText"><?php echo $this->description; ?></div>
-      <?php endif; ?>
-      <div class="wrapper">
-            <div class="rateItRating-selected" style="display: block;"></div>
-            <div class="rateItRating-hover"></div>
-      </div>
-      <?php if ($this->showAfter) : ?>
-       <div id="<?php echo $this->descriptionId; ?>" class="ratingText"><?php echo $this->description; ?></div>
-      <?php endif; ?>
-   </div>
-   <span class="rating-microdata" itemprop="name"><?php echo $this->itemreviewed; ?></span>
-   <span class="rating-microdata" itemtype="http://schema.org/AggregateRating" itemscope itemprop="aggregateRating">
-      <span itemprop="ratingValue"><?php echo $this->actRating; ?></span>
-      <span itemprop="worstRating">0</span>
-      <span itemprop="bestRating"><?php echo $this->maxRating; ?></span>
-      <span itemprop="ratingCount"><?php echo $this->votes; ?></span>
-   </span>
-</div>
-<!-- indexer::continue -->
-<?php endif; ?>
+<?php $this->endblock(); ?>
