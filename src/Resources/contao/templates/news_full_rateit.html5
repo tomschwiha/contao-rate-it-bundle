@@ -18,6 +18,8 @@
 	<!-- indexer::continue -->
 <?php endif; ?>
 
+<h1>Hello world!</h1>
+
 <?php $this->insert('news_full', $this->arrData); ?>
 
 </div>
