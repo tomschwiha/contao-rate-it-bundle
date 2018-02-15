@@ -77,12 +77,12 @@ class RateItArticle extends RateItFrontend {
 			$objTemplate->maxRating = $this->intStars;
 			$objTemplate->votes = $rating[totalRatings];
 
-			/*if ($this->strTextPosition == "before") {
+			if ($this->strTextPosition == "before") {
 				$objTemplate->showBefore = true;
 			}
 			else if ($this->strTextPosition == "after") {
 				$objTemplate->showAfter = true;
-			}*/
+			}
 
 			if ($arrArticle['rateit_position'] == 'before') {
 				$objTemplate->rateit_rating_before = true;
