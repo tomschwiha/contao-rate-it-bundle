@@ -33,17 +33,17 @@ use cgoIT\rateit\RateItBackend;
 /**
  * Hooks
  */
-$GLOBALS['TL_HOOKS']['generatePage'][]           = array('cgoIT\\rateit\\RateItPage', 'generatePage');
-$GLOBALS['TL_HOOKS']['parseArticles'][]          = array('cgoIT\\rateit\\RateItNews', 'parseArticle');
-$GLOBALS['TL_HOOKS']['getContentElement'][]      = array('cgoIT\\rateit\\RateItFaq', 'getContentElementRateIt');
-$GLOBALS['TL_HOOKS']['parseTemplate'][]          = array('cgoIT\\rateit\\RateItArticle', 'parseTemplateRateIt');
+$GLOBALS['TL_HOOKS']['generatePage'][]           = array('cgoIT\rateit\RateItPage', 'generatePage');
+$GLOBALS['TL_HOOKS']['parseArticles'][]          = array('cgoIT\rateit\RateItNews', 'parseArticle');
+$GLOBALS['TL_HOOKS']['getContentElement'][]      = array('cgoIT\rateit\RateItFaq', 'getContentElementRateIt');
+$GLOBALS['TL_HOOKS']['parseTemplate'][]          = array('cgoIT\rateit\RateItArticle', 'parseTemplateRateIt');
 
 /**
  * Back end modules
  */
-array_insert($GLOBALS['BE_MOD']['content'], count($GLOBALS['BE_MOD']['content']),
+array_insert($GLOBALS['BE_MOD']['content'], -1,
 	array('rateit' => array (
-		'callback'   => 'cgoIT\\rateit\\RateItBackendModule',
+		'callback'   => 'cgoIT\rateit\RateItBackendModule',
     'icon'       => RateItBackend::image('icon'),
 		'stylesheet' => RateItBackend::css('backend'),
 		'javascript' => RateItBackend::js('RateItBackend')
@@ -53,12 +53,12 @@ array_insert($GLOBALS['BE_MOD']['content'], count($GLOBALS['BE_MOD']['content'])
 /**
  * frontend moduls
  */
-$GLOBALS['FE_MOD']['application']['rateit']             = 'cgoIT\\rateit\\RateItModule';
-$GLOBALS['FE_MOD']['application']['rateit_top_ratings'] = 'cgoIT\\rateit\\RateItTopRatingsModule';
+$GLOBALS['FE_MOD']['application']['rateit']             = 'cgoIT\rateit\RateItModule';
+$GLOBALS['FE_MOD']['application']['rateit_top_ratings'] = 'cgoIT\rateit\RateItTopRatingsModule';
 
 /**
  * content elements
  */
-$GLOBALS['TL_CTE']['includes']['rateit'] = 'cgoIT\\rateit\\RateItCE';
+$GLOBALS['TL_CTE']['includes']['rateit'] = 'cgoIT\rateit\RateItCE';
 
 ?>
