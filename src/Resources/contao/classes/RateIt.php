@@ -86,8 +86,7 @@ class RateIt extends \Frontend {
 			$arrRkey = explode('|', $rkey);
 			foreach ($arrRkey as $key) {
 				if (!is_numeric($key)) {
-					$return = [$GLOBALS['TL_LANG']['rateit']['error']['invalid_rating']];
-					return new JsonResponse(array('result' => 'error', 'data' => $return));
+					return new JsonResponse($GLOBALS['TL_LANG']['rateit']['error']['invalid_rating']);
 				}
 				$id = $rkey;
 			}
@@ -95,8 +94,7 @@ class RateIt extends \Frontend {
 			if (is_numeric($rkey)) {
 				$id = $rkey;
 			} else {
-				$return = [$GLOBALS['TL_LANG']['rateit']['error']['invalid_rating']];
-				return new JsonResponse(array('result' => 'error', 'data' => $return));
+				return new JsonResponse($GLOBALS['TL_LANG']['rateit']['error']['invalid_rating']);
 			}
 		}
 
@@ -104,14 +102,12 @@ class RateIt extends \Frontend {
 		if (is_numeric($percent) && $percent < 101) {
 			$rating = $percent;
 		} else {
-			$return = [$GLOBALS['TL_LANG']['rateit']['error']['invalid_rating']];
-			return new JsonResponse(array('result' => 'error', 'data' => $return));
+			return new JsonResponse($GLOBALS['TL_LANG']['rateit']['error']['invalid_rating']);
 		}
 
 		//Make sure that the ratable type is 'page' or 'ce' or 'module'
 		if (!($type === 'page' || $type === 'article' || $type === 'ce' || $type === 'module' || $type === 'news' || $type === 'faq' || $type === 'galpic' || $type === 'news4ward')) {
-			$return = [$GLOBALS['TL_LANG']['rateit']['error']['invalid_type']];
-			return new JsonResponse(array('result' => 'error', 'data' => $return));
+			return new JsonResponse($GLOBALS['TL_LANG']['rateit']['error']['invalid_type']);
 		}
 
 		$strHash = sha1(session_id() . (!$GLOBALS['TL_CONFIG']['disableIpCheck'] ? \Environment::get('ip') : '') . 'FE_USER_AUTH');
@@ -168,14 +164,12 @@ class RateIt extends \Frontend {
 						   ->set($arrSet)
 						   ->execute();
     } else {
-				$return = [$GLOBALS['TL_LANG']['rateit']['error']['duplicate_vote']];
-				return new JsonResponse(array('result' => 'error', 'data' => $return));
+				return new JsonResponse($GLOBALS['TL_LANG']['rateit']['error']['duplicate_vote']);
     }
 
 		$rating = $this->rateItFrontend->loadRating($id, $type);
 
-		$return = [$this->rateItFrontend->getStarMessage($rating)];
-		return new JsonResponse(array('result' => 'success', 'data' => $return));
+		return new JsonResponse($this->rateItFrontend->getStarMessage($rating));
 	}
 }
 ?>
