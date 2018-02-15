@@ -48,10 +48,10 @@
 	text-align:left;
 	line-height:1;
 }
-.mod_rateit table th.selectall { 
+.mod_rateit table th.selectall {
     background-color:#fff;
 }
-.mod_rateit table.rating-selectall { 
+.mod_rateit table.rating-selectall {
     border:0px;
 }
 .mod_rateit table th { background-color:#fbf7f1; }
@@ -116,11 +116,11 @@
 }
 .mod_rateit div.ratebartext { margin-left:65px; }
 
-.mod_rateit a.header_export_excel{ 
+.mod_rateit a.header_export_excel{
 	padding:2px 0 3px 20px;
-	background-image:url("../images/exportEXCEL.gif");
+	background-image:url("../images/exportEXCEL.svg");
 	background-position:left center;
-	background-repeat:no-repeat; 
+	background-repeat:no-repeat;
 }
 
 .mod_rateit div.chart {
