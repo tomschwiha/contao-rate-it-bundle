@@ -87,7 +87,7 @@ class RateIt extends \Frontend {
 			foreach ($arrRkey as $key) {
 				if (!is_numeric($key)) {
 					$return = [$GLOBALS['TL_LANG']['rateit']['error']['invalid_rating']];
-					return new JsonResponse($return);
+					return new JsonResponse(array('result' => 'error', 'data' => $return));
 				}
 				$id = $rkey;
 			}
@@ -96,7 +96,7 @@ class RateIt extends \Frontend {
 				$id = $rkey;
 			} else {
 				$return = [$GLOBALS['TL_LANG']['rateit']['error']['invalid_rating']];
-				return new JsonResponse($return);
+				return new JsonResponse(array('result' => 'error', 'data' => $return));
 			}
 		}
 
@@ -105,13 +105,13 @@ class RateIt extends \Frontend {
 			$rating = $percent;
 		} else {
 			$return = [$GLOBALS['TL_LANG']['rateit']['error']['invalid_rating']];
-			return new JsonResponse($return);
+			return new JsonResponse(array('result' => 'error', 'data' => $return));
 		}
 
 		//Make sure that the ratable type is 'page' or 'ce' or 'module'
 		if (!($type === 'page' || $type === 'article' || $type === 'ce' || $type === 'module' || $type === 'news' || $type === 'faq' || $type === 'galpic' || $type === 'news4ward')) {
 			$return = [$GLOBALS['TL_LANG']['rateit']['error']['invalid_type']];
-			return new JsonResponse($return);
+			return new JsonResponse(array('result' => 'error', 'data' => $return));
 		}
 
 		$strHash = sha1(session_id() . (!$GLOBALS['TL_CONFIG']['disableIpCheck'] ? \Environment::get('ip') : '') . 'FE_USER_AUTH');
@@ -169,13 +169,13 @@ class RateIt extends \Frontend {
 						   ->execute();
     } else {
 				$return = [$GLOBALS['TL_LANG']['rateit']['error']['duplicate_vote']];
-				return new JsonResponse($return);
+				return new JsonResponse(array('result' => 'error', 'data' => $return));
     }
 
 		$rating = $this->rateItFrontend->loadRating($id, $type);
 
 		$return = [$this->rateItFrontend->getStarMessage($rating)];
-		return new JsonResponse($return);
+		return new JsonResponse(array('result' => 'success', 'data' => $return));
 	}
 }
 ?>
