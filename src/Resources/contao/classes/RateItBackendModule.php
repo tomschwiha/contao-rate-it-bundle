@@ -30,7 +30,7 @@
 
 namespace cgoIT\rateit;
 
-class rateitBackendModule extends \BackendModule
+class RateItBackendModule extends \BackendModule
 {
 	protected $strTemplate;
 	protected $actions = array();
@@ -62,6 +62,8 @@ class rateitBackendModule extends \BackendModule
 	 */
 	public function __construct($objElement=array()) {
 		parent::__construct($objElement);
+
+		asdlkfj
 
 		$this->label = $GLOBALS['TL_CONFIG']['rating_type'] == 'hearts' ? $GLOBALS['TL_LANG']['rateit']['heart'] : $GLOBALS['TL_LANG']['rateit']['star'];
 		$this->labels = $GLOBALS['TL_CONFIG']['rating_type'] == 'hearts' ? $GLOBALS['TL_LANG']['rateit']['hearts'] : $GLOBALS['TL_LANG']['rateit']['stars'];

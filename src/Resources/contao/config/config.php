@@ -43,7 +43,10 @@ $GLOBALS['TL_HOOKS']['parseTemplate'][]          = array('cgoIT\rateit\RateItArt
  */
 array_insert($GLOBALS['BE_MOD']['content'], -1,
 	array('rateit' => array (
-		'callback'   => 'cgoIT\rateit\RateItBackendModule'
+		'callback'   => 'cgoIT\rateit\RateItBackendModule',
+    'icon'       => RateItBackend::image('icon'),
+		'stylesheet' => RateItBackend::css('backend'),
+		'javascript' => RateItBackend::js('RateItBackend')
 	)
 ));
 
