@@ -1,0 +1,3 @@
+ajax_rateit:
+    resource: "@CgoITRateItBundle/Controller/"
+    type: annotation
