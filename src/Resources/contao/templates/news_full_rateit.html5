@@ -2,7 +2,7 @@
 <?php if ($this->rateit_rating_before): ?>
 	<!-- indexer::stop -->
 	<?php $this->block('rating'); ?>
-	<div id="<?= $this->rateItID ?>" class="<?= $this->class ?> <?= $this->rateit_class ?>">
+	<div id="<?= $this->ratingId ?>" class="<?= $this->class ?> <?= $this->rateit_class ?>">
 			<?php if ($this->showBefore) : ?>
 			<div id="<?= $this->descriptionId ?>" class="ratingText"><?= $this->description ?></div>
 			<?php endif; ?>
@@ -23,7 +23,7 @@
 <?php if ($this->rateit_rating_after): ?>
 	<!-- indexer::stop -->
 	<?php $this->block('rating'); ?>
-	<div id="<?= $this->rateItID ?>" class="<?= $this->class ?> <?= $this->rateit_class ?>">
+	<div id="<?= $this->ratingId ?>" class="<?= $this->class ?> <?= $this->rateit_class ?>">
 			<?php if ($this->showBefore) : ?>
 			<div id="<?= $this->descriptionId ?>" class="ratingText"><?= $this->description ?></div>
 			<?php endif; ?>
