@@ -66,12 +66,16 @@ class RateIt extends \Frontend {
 	 * @param integer percent - The rating in percentages.
 	 */
 	public function doVote(SimpleAjax $event) {
-		if ($this->Input->get('do') == 'rateit') {
+		$input = $event->getEnvironment()->getInputProvider();
+
+    if ((true === $input->hasParameter('do'))
+        && ('rateit' === $input->getParameter('do'))
+    ) {
 			$ip = $_SERVER['REMOTE_ADDR'];
 
-			$rkey = $this->Input->post('id');
-			$percent = $this->Input->post('vote');
-			$type = $this->Input->post('type');
+			$rkey = $input->getParameter('id');
+			$percent = $input->getParameter('vote');
+			$type = $input->getParameter('type');
 
 			//Make sure that the ratable ID is a number and not something crazy.
 			if (strstr($rkey, '|')) {
@@ -81,7 +85,7 @@ class RateIt extends \Frontend {
 						$return = [$GLOBALS['TL_LANG']['rateit']['error']['invalid_rating']];
 						$response = new JsonResponse($return);
 						$event->setResponse($response);
-						return;
+						return $event;
 					}
 					$id = $rkey;
 				}
@@ -92,7 +96,7 @@ class RateIt extends \Frontend {
 					$return = [$GLOBALS['TL_LANG']['rateit']['error']['invalid_rating']];
 					$response = new JsonResponse($return);
 					$event->setResponse($response);
-					return;
+					return $event;
 				}
 			}
 
@@ -103,7 +107,7 @@ class RateIt extends \Frontend {
 				$return = [$GLOBALS['TL_LANG']['rateit']['error']['invalid_rating']];
 				$response = new JsonResponse($return);
 				$event->setResponse($response);
-				return;
+				return $event;
 			}
 
 			//Make sure that the ratable type is 'page' or 'ce' or 'module'
@@ -111,7 +115,7 @@ class RateIt extends \Frontend {
 				$return = [$GLOBALS['TL_LANG']['rateit']['error']['invalid_type']];
 				$response = new JsonResponse($return);
 				$event->setResponse($response);
-				return;
+				return $event;
 			}
 
 			$strHash = sha1(session_id() . (!$GLOBALS['TL_CONFIG']['disableIpCheck'] ? \Environment::get('ip') : '') . 'FE_USER_AUTH');
@@ -168,9 +172,10 @@ class RateIt extends \Frontend {
 							   ->set($arrSet)
 							   ->execute();
 	      } else {
-	         header(RETURN_AJAX_HEADER);
-				echo $GLOBALS['TL_LANG']['rateit']['error']['duplicate_vote'];
-				exit;
+					$return = [$GLOBALS['TL_LANG']['rateit']['error']['duplicate_vote']];
+					$response = new JsonResponse($return);
+					$event->setResponse($response);
+					return $event;
 	      }
 
 			$rating = $this->rateItFrontend->loadRating($id, $type);
@@ -178,6 +183,7 @@ class RateIt extends \Frontend {
 			$return = [$this->rateItFrontend->getStarMessage($rating)];
 			$response = new JsonResponse($return);
 			$event->setResponse($response);
+			return $event;
 		}
 	}
 
