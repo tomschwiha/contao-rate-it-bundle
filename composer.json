@@ -11,7 +11,7 @@
 			"cgo-it/*": "dist",
 			"*": "dist"
 		},
-		"gitlab-domains": [ "git.cgo-it.de" ],
+		"gitlab-domains": [ "git.cgo-it.de" ]
 	}
 	"authors":[
 		{
