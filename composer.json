@@ -12,7 +12,7 @@
 			"*": "dist"
 		},
 		"gitlab-domains": [ "git.cgo-it.de" ]
-	}
+	},
 	"authors":[
 		{
 			"name":"cgo IT",
