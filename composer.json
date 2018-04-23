@@ -30,6 +30,12 @@
 		"contao/core": "*",
 		"contao/manager-plugin": "<2.0 || >=3.0"
 	},
+	"repositories": [
+		{
+			"type": "gitlab",
+			"url": "https://git.cgo-it.de/contao/rate-it.git"
+		}
+	],
 	"autoload": {
 		"psr-4": {
 			"cgoIT\\rateit\\": "src/"
