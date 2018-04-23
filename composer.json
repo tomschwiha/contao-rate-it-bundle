@@ -5,6 +5,7 @@
 	"type":"contao-bundle",
 	"homepage":"https://cgo-it.de",
 	"license":"LGPL-3.0+",
+	"prefer-stable": true,
 	"authors":[
 		{
 			"name":"cgo IT",
