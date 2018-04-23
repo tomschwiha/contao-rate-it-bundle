@@ -5,6 +5,14 @@
 	"type":"contao-bundle",
 	"homepage":"https://cgo-it.de",
 	"license":"LGPL-3.0+",
+	"prefer-stable": true,
+	"config": {
+		"preferred-install": {
+			"cgo-it/*": "dist",
+			"*": "dist"
+		},
+		"gitlab-domains": [ "git.cgo-it.de" ],
+	}
 	"authors":[
 		{
 			"name":"cgo IT",
@@ -32,7 +40,7 @@
 	},
 	"repositories": [
 		{
-			"type": "gitlab",
+			"type": "vcs",
 			"url": "https://git.cgo-it.de/contao/rate-it.git"
 		}
 	],
