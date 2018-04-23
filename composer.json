@@ -40,7 +40,7 @@
 	},
 	"repositories": [
 		{
-			"type": "vcs",
+			"type": "gitlab",
 			"url": "https://git.cgo-it.de/contao/rate-it.git"
 		}
 	],
