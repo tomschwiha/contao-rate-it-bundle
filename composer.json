@@ -6,6 +6,12 @@
 	"homepage":"https://cgo-it.de",
 	"license":"LGPL-3.0+",
 	"prefer-stable": true,
+	"config": {
+		"preferred-install": {
+			"cgo-it/*": "dist",
+			"*": "dist"
+		}
+	},
 	"authors":[
 		{
 			"name":"cgo IT",
