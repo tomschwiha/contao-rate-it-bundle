@@ -9,11 +9,11 @@
 namespace cgoIT\rateit\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use cgoIT\rateit\RateIt;
 
-class AjaxRateItController extends Controller {
+class AjaxRateItController extends AbstractController {
     /**
      * Handles rating requests.
      *
